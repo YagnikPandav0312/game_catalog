@@ -6,6 +6,7 @@ const morgan = require("morgan");
 const path = require("path");
 const providersRoutes = require("./routes/providers.routes");
 const gametypeRoutes = require("./routes/gametype.routes");
+const devicetypeRoutes = require("./routes/devicetype.routes");
 const logger = require("./middlewares/logger.middleware");
 const app = express();
 
@@ -19,5 +20,6 @@ app.use(logger);
 
 app.use("/api/providers", providersRoutes);
 app.use("/api/gametype", gametypeRoutes);
+app.use("/api/devicetype", devicetypeRoutes);
 
 module.exports = app;

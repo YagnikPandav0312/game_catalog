@@ -7,10 +7,9 @@ async function getProviders() {
 }
 
 async function getProviderById(game_provider_id) {
-  const result = await pool.query(
-    "SELECT * FROM providers WHERE provider_id = $1",
-    [game_provider_id],
-  );
+  const query = `SELECT * FROM get_provider_by_id($1)`;
+  const values = [game_provider_id];
+  const result = await pool.query(query, values);
   return result.rows[0];
 }
 
@@ -22,17 +21,17 @@ async function createProviders(provider_name, slug, logo) {
 }
 
 async function updateProvider(provider_id, provider_name, slug, logo) {
-  const result = await pool.query(
-    "SELECT update_providers($1, $2, $3, $4) AS success",
-    [provider_id, provider_name, slug, logo],
-  );
+  const query = `SELECT * FROM update_providers($1, $2, $3, $4) AS success`;
+  const values = [provider_id, provider_name, slug, logo];
+  const result = await pool.query(query, values);
   return result.rows[0];
 }
 
 async function deleteProviders(provider_id) {
   const query = `SELECT delete_providers($1) AS success`;
-  const result = await pool.query(query, [provider_id]);
-  return result.rows[0]; // { success: true/false }
+  const values = [provider_id];
+  const result = await pool.query(query, values);
+  return result.rows[0];
 }
 
 module.exports = {
