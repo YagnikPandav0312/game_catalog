@@ -53,32 +53,49 @@ async function createGameType(req, res) {
   }
 }
 
-// async function updateGameType(req, res) {
-//   const { game_types_name, slug } = req.body;
+async function updateGameType(req, res) {
+  try {
+    const { game_types_name, slug } = req.body;
+    const result = await service.updateGameType(req.params.id, game_types_name, slug);
+    if (!result) {
+      return res.status(404).json({
+        success: false,
+        message: "Update Game Type Failed",
+      });
+    }
+    res.status(200).json({
+      success: true,
+      message: "Updated Game Type Successfully",
+      data: result,
+    });
+  } catch (error) {
+    return res.status(500).json({ success: false, message: error.message });
+  }
+}
 
-//   const result = await service.updateGameType(req.params.id, game_types_name, slug);
-
-//   res.json({
-//     success: true,
-//     message: "Updated successfully",
-//     data: result,
-//   });
-// }
-
-// async function deleteGameType(req, res) {
-//   const result = await service.deleteGameType(req.params.id);
-
-//   res.json({
-//     success: true,
-//     message: "Deleted successfully",
-//     data: result,
-//   });
-// }
+async function deleteGameType(req, res) {
+  try {
+    const result = await service.deleteGameType(req.params.id);
+    if (!result) {
+      return res.status(404).json({
+        success: false,
+        message: "Delete Game Type Failed",
+      });
+    }
+    res.status(200).json({
+      success: true,
+      message: "Deleted Game Type Successfully",
+      data: result,
+    });
+  } catch (error) {
+    return res.status(500).json({ success: false, message: error.message });
+  }
+}
 
 module.exports = {
   createGameType,
   getGameType,
   getGameTypeById,
-  // updateGameType,
-  // deleteGameType,
+  updateGameType,
+  deleteGameType,
 };

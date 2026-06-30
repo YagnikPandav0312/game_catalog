@@ -5,8 +5,8 @@ async function getGameType() {
   return result;
 }
 
-async function getGameTypeById(id) {
-  return await gameTypeRepo.getGameTypeById(id);
+async function getGameTypeById(game_type_id) {
+  return await gameTypeRepo.getGameTypeById(game_type_id);
 }
 
 async function createGameType(game_types_name, slug) {
@@ -17,18 +17,18 @@ async function createGameType(game_types_name, slug) {
   return result;
 }
 
-// async function updateGameType(id, game_types_name, slug) {
-//   return await repo.updateGameType(id, game_types_name, slug);
-// }
+async function updateGameType(id, game_types_name, slug) {
+  return await gameTypeRepo.updateGameType(id, game_types_name, slug);
+}
 
-// async function deleteGameType(id) {
-//   return await repo.deleteGameType(id);
-// }
+async function deleteGameType(id) {
+  return await gameTypeRepo.deleteGameType(id);
+}
 
 module.exports = {
   createGameType,
   getGameType,
   getGameTypeById,
-  // updateGameType,
-  // deleteGameType,
+  updateGameType,
+  deleteGameType,
 };

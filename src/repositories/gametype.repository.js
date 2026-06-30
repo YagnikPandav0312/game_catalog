@@ -21,25 +21,25 @@ async function createGameType(game_types_name, slug) {
   return result.rows[0];
 }
 
-// async function updateGameType(id, game_types_name, slug) {
-//   const result = await pool.query(
-//     "SELECT update_game_type($1, $2, $3) AS success",
-//     [id, game_types_name, slug],
-//   );
-//   return result.rows[0];
-// }
+async function updateGameType(id, game_types_name, slug) {
+  const result = await pool.query(
+    "SELECT update_game_type($1, $2, $3) AS success",
+    [id, game_types_name, slug],
+  );
+  return result.rows[0];
+}
 
-// async function deleteGameType(id) {
-//   const result = await pool.query("SELECT delete_game_type($1) AS success", [
-//     id,
-//   ]);
-//   return result.rows[0];
-// }
+async function deleteGameType(id) {
+  const result = await pool.query("SELECT delete_game_type($1) AS success", [
+    id,
+  ]);
+  return result.rows[0];
+}
 
 module.exports = {
   createGameType,
   getGameType,
   getGameTypeById,
-  // updateGameType,
-  // deleteGameType,
+  updateGameType,
+  deleteGameType,
 };

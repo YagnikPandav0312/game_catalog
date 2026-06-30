@@ -6,10 +6,10 @@ async function getProviders() {
   return result.rows;
 }
 
-async function getProviderById(id) {
+async function getProviderById(game_provider_id) {
   const result = await pool.query(
     "SELECT * FROM providers WHERE provider_id = $1",
-    [id],
+    [game_provider_id],
   );
   return result.rows[0];
 }

@@ -15,8 +15,8 @@ async function getProviders(req, res) {
 
 async function getProvidersById(req, res) {
   try {
-     const id = req.params.id; 
-    const result = await providerService.getProvidersById(id);
+    const game_provider_id = req.params.id;
+    const result = await providerService.getProvidersById(game_provider_id);
     if (!result) {
       return res.status(404).json({
         success: false,
@@ -61,12 +61,12 @@ async function updateProviders(req, res) {
     if (!result) {
       return res.status(404).json({
         success: false,
-        message: "Update Failed",
+        message: "Update Provider Failed",
       });
     }
     res.status(200).json({
       success: true,
-      message: "Provider Updated Successfully",
+      message: "Updated Provider Successfully",
       data: result,
     });
   } catch (error) {
@@ -81,9 +81,15 @@ async function deleteProviders(req, res) {
   try {
     const { id } = req.params;
     const result = await providerService.deleteProviders(id);
+    if (!result) {
+      return res.status(404).json({
+        success: false,
+        message: "Delete Provider Failed",
+      });
+    }
     res.status(200).json({
       success: true,
-      message: "Provider Deleted Successfully",
+      message: "Deleted Provider Successfully",
       data: result,
     });
   } catch (error) {
