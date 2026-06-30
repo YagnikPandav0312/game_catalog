@@ -1,4 +1,3 @@
-const pool = require("../config/db");
 const providerRepo = require("../repositories/providers.repository");
 
 async function getProviders() {
@@ -11,9 +10,9 @@ async function getProvidersById(provider_id) {
 }
 
 async function createProviders(provider_name) {
-  // if (!provider_name || provider_name.trim() === "") {
-  //   throw new Error("Provider name is required");
-  // }
+  if (!provider_name || provider_name.trim() === "") {
+    throw new Error("Provider name is required");
+  }
   const result = await providerRepo.createProviders(provider_name);
   return result;
 }
