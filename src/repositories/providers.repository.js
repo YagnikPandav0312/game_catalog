@@ -14,17 +14,17 @@ async function getProviderById(game_provider_id) {
   return result.rows[0];
 }
 
-async function createProviders(provider_name) {
-  const query = `SELECT * FROM create_providers($1)`;
-  const values = [provider_name];
+async function createProviders(provider_name, logo) {
+  const query = `SELECT * FROM create_providers($1, $2)`;
+  const values = [provider_name, logo];
   const result = await pool.query(query, values);
   return result.rows[0];
 }
 
-async function updateProvider(provider_id, provider_name) {
+async function updateProvider(provider_id, provider_name, logo) {
   const result = await pool.query(
-    "SELECT update_providers($1, $2) AS success",
-    [provider_id, provider_name],
+    "SELECT update_providers($1, $2, $3) AS success",
+    [provider_id, provider_name, logo],
   );
   return result.rows[0];
 }

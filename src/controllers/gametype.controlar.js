@@ -41,7 +41,7 @@ async function getGameTypeById(req, res) {
 
 async function createGameType(req, res) {
   try {
-    const { game_types_name, slug } = req.body;
+    const { game_types_name, slug } = req.body || {};
     const result = await service.createGameType(game_types_name, slug);
     return res.status(200).json({
       success: true,
@@ -55,7 +55,7 @@ async function createGameType(req, res) {
 
 async function updateGameType(req, res) {
   try {
-    const { game_types_name, slug } = req.body;
+    const { game_types_name, slug } = req.body || {};
     const result = await service.updateGameType(req.params.id, game_types_name, slug);
     if (!result) {
       return res.status(404).json({
