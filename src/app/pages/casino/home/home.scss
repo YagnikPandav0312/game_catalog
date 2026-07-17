@@ -16,10 +16,11 @@
     gap: 1rem;
     padding-bottom: 0.5rem;
     scroll-snap-type: x mandatory;
-    
+
     &::-webkit-scrollbar {
       height: 4px;
     }
+
     &::-webkit-scrollbar-thumb {
       background: var(--hover-bg);
       border-radius: 2px;
@@ -133,7 +134,9 @@
     opacity: 0.85;
     transition: transform 0.3s;
 
-    .golem-icon, .headphones-icon, .poker-icon {
+    .golem-icon,
+    .headphones-icon,
+    .poker-icon {
       font-size: 5rem;
       filter: drop-shadow(0 0 15px currentColor);
     }
@@ -150,7 +153,6 @@
 
   .search-input-wrapper {
     position: relative;
-    max-width: 600px;
     width: 100%;
 
     .search-icon {
@@ -200,6 +202,7 @@
   &::-webkit-scrollbar {
     height: 4px;
   }
+
   &::-webkit-scrollbar-thumb {
     background: var(--hover-bg);
     border-radius: 2px;
@@ -305,22 +308,21 @@
     }
   }
 
-  /* Specific Game Gradients same-to-same */
-  &.bg-dice { background: linear-gradient(135deg, #6c2cf4 0%, #4614b8 100%); }
-  &.bg-mines { background: linear-gradient(135deg, #00b0ff 0%, #007bb5 100%); }
-  &.bg-plinko { background: linear-gradient(135deg, #e91e63 0%, #a81045 100%); }
-  &.bg-chicken { background: linear-gradient(135deg, #4d38c9 0%, #2f2191 100%); }
-  &.bg-crash { background: linear-gradient(135deg, #0e2a3a 0%, #00e676 150%); }
-  &.bg-keno { background: linear-gradient(135deg, #157f8c 0%, #0c4e57 100%); }
-  &.bg-limbo { background: linear-gradient(135deg, #ff9800 0%, #b26a00 100%); }
-  &.bg-hilo { background: linear-gradient(135deg, #4caf50 0%, #2e7d32 100%); }
-
   .original-card-body {
     flex: 1;
     display: flex;
     justify-content: center;
     align-items: center;
     transition: filter 0.2s;
+    overflow: hidden;
+
+    .game-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.3s ease;
+    }
   }
 
   .original-card-footer {
@@ -340,144 +342,139 @@
   }
 }
 
-/* Graphics inside card bodies */
-.die-face {
-  width: 50px;
-  height: 50px;
-  background-color: #fff;
-  border-radius: 8px;
-  position: relative;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-  transform: rotate(-10deg);
-
-  .dot {
-    width: 10px;
-    height: 10px;
-    background-color: #d81b60;
-    border-radius: 50%;
-    position: absolute;
-  }
-
-  &.face-1 .dot {
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
-
-  &.face-2 {
-    transform: translate(12px, -8px) rotate(15deg);
-    background-color: #ff1744;
-
-    .dot {
-      background-color: #fff;
-
-      &:nth-child(1) { top: 10px; left: 10px; }
-      &:nth-child(2) { bottom: 10px; right: 10px; }
-    }
-  }
+/* Publishers / Providers Section */
+.publishers-section {
+  margin-top: 3.5rem;
+  margin-bottom: 2rem;
 }
 
-.gem-icon {
-  font-size: 3rem;
-  filter: drop-shadow(0 0 10px #00e676);
-}
-
-.egg-icon {
-  font-size: 3rem;
-  filter: drop-shadow(0 0 10px #ffeb3b);
-}
-
-.plinko-pins {
-  position: relative;
-  width: 80px;
-  height: 80px;
-
-  .pin {
-    width: 5px;
-    height: 5px;
-    background-color: #fff;
-    border-radius: 50%;
-    position: absolute;
-    opacity: 0.8;
-
-    &:nth-child(1) { top: 10px; left: 40px; }
-    &:nth-child(2) { top: 30px; left: 25px; }
-    &:nth-child(3) { top: 30px; left: 55px; }
-  }
-
-  .ball {
-    width: 12px;
-    height: 12px;
-    background-color: #ffeb3b;
-    border-radius: 50%;
-    position: absolute;
-    top: 15px;
-    left: 36px;
-    box-shadow: 0 0 8px #ffeb3b;
-  }
-}
-
-.crash-chart {
-  font-size: 3.5rem;
-  filter: drop-shadow(0 0 12px #00e676);
-}
-
-.keno-grid {
+.publishers-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 4px;
+  grid-template-columns: repeat(8, 1fr);
+  gap: 0.85rem;
+  margin-top: 1.25rem;
 
-  .tile {
-    width: 25px;
-    height: 25px;
-    background-color: rgba(255,255,255,0.1);
-    border-radius: 4px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 0.75rem;
-    font-weight: 700;
-    color: #fff;
+  @media (max-width: 1400px) {
+    grid-template-columns: repeat(6, 1fr);
+  }
 
-    &.selected {
-      background-color: #00e676;
-      color: #000;
-    }
+  @media (max-width: 992px) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @media (max-width: 576px) {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
-.limbo-multiplier {
-  font-size: 1.35rem;
-  font-weight: 900;
-  color: #fff;
-  background-color: rgba(0,0,0,0.3);
-  padding: 0.35rem 0.75rem;
-  border-radius: 4px;
-  border: 1px solid rgba(255,255,255,0.15);
-}
-
-.card-display {
-  width: 45px;
-  height: 65px;
-  background-color: #fff;
-  border-radius: 5px;
+.publisher-item {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  padding: 6px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-  transform: rotate(-5deg);
+  gap: 0.55rem;
+}
 
-  i {
-    font-size: 1rem;
-    align-self: flex-start;
+.publisher-card {
+  background-color: var(--card-bg);
+  border-radius: var(--border-radius);
+  height: 72px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.85rem;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+  border: 1px solid transparent;
+  box-shadow: var(--shadow-soft);
+  overflow: hidden;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
   }
 
-  .card-val {
-    font-size: 1.2rem;
-    font-weight: 900;
-    color: #ff1744;
-    align-self: flex-end;
-    line-height: 1;
+  .provider-logo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    opacity: 0.85;
+    transition: opacity 0.25s;
+  }
+
+  &:hover .provider-logo {
+    opacity: 1;
+  }
+}
+
+.publisher-status {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.35rem;
+  padding-left: 0.25rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+
+  .status-dot {
+    width: 6px;
+    height: 6px;
+    background-color: #10c17a; // bright green dot
+    border-radius: 50%;
+    display: inline-block;
+    box-shadow: 0 0 6px rgba(16, 193, 122, 0.6);
+  }
+
+  .status-text {
+    color: var(--text-secondary); // 'playing' text is secondary
+
+    .playing-count {
+      color: #10c17a; // the count itself is green matching mockup
+      font-weight: 800;
+    }
+  }
+}
+
+/* Load More Divider Line */
+.load-more-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  width: 100%;
+
+  &::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 50%;
+    height: 2px;
+    background-color: var(--card-bg); // matching card-bg for divider
+    z-index: 1;
+  }
+
+  .btn-load-more {
+    position: relative;
+    z-index: 2;
+    background-color: var(--bg-color); // matching main bg to mask line
+    border: none;
+    padding: 0 1.5rem;
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    font-weight: 800;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    letter-spacing: 0.5px;
+
+    &:hover {
+      color: var(--text-color);
+      transform: scale(1.05);
+    }
   }
 }
