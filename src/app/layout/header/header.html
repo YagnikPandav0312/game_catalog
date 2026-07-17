@@ -1,0 +1,25 @@
+<header class="header-container">
+  <div class="header-left">
+    <button class="hamburger-btn" (click)="onToggleSidebar()" aria-label="Toggle Sidebar">
+      <i class="fas fa-bars"></i>
+    </button>
+    
+    <!-- <div class="header-switcher">
+      <a routerLink="/casino/home" routerLinkActive="active" class="switcher-btn btn-casino">
+        <i class="fas fa-dice"></i> Casino
+      </a>
+      <a routerLink="/sports/home" routerLinkActive="active" class="switcher-btn btn-sports">
+        <i class="fas fa-soccer-ball"></i> Sports
+      </a>
+    </div> -->
+
+    <a routerLink="/" class="logo-link">
+      <span class="logo-text">Stake</span>
+    </a>
+  </div>
+
+  <div class="header-right">
+    <button class="btn-login">Login</button>
+    <button class="btn-register">Register</button>
+  </div>
+</header>

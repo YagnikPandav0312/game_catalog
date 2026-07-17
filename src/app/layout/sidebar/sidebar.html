@@ -1,0 +1,251 @@
+<div class="sidebar-header">
+  <button class="menu-button" aria-label="Toggle Sidebar" (click)="onToggleSidebar()">
+    <svg data-ds-icon="Menu" width="20" height="20" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none">
+      <path fill="currentColor" d="M19 4H5a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1m.15 6H4.85a.85.85 0 0 0-.85.85v2.3c0 .47.38.85.85.85h14.3c.47 0 .85-.38.85-.85v-2.3a.85.85 0 0 0-.85-.85M19 16H5a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1"></path>
+    </svg>
+  </button>
+  <div class="link-wrap">
+    <a class="header-button" routerLink="/casino/home" routerLinkActive="active" data-testid="header-casino-link">
+      <i class="fas fa-dice"></i>
+      <span class="label-text">Casino</span>
+    </a>
+    <a class="header-button" routerLink="/sports/home" routerLinkActive="active" data-testid="header-sports-link">
+      <i class="fas fa-soccer-ball"></i>
+      <span class="label-text">Sports</span>
+    </a>
+  </div>
+</div>
+
+<div class="sidebar-content">
+  <!-- === GENERAL MODE === -->
+  @if (sidebarMode() === 'general') {
+  <ul class="nav-links">
+    <li>
+      <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="nav-item">
+        <i class="fas fa-house"></i>
+        <span class="label-text">Home</span>
+      </a>
+    </li>
+    <li>
+      <a href="#" class="nav-item has-chevron">
+        <i class="fas fa-gift text-primary"></i>
+        <span class="label-text">Promotions</span>
+        <i class="fas fa-chevron-down chevron-arrow"></i>
+      </a>
+    </li>
+    <li>
+      <a href="#" class="nav-item">
+        <i class="fas fa-trophy text-warning"></i>
+        <span class="label-text">Challenges</span>
+      </a>
+    </li>
+    <li>
+      <a href="#" class="nav-item">
+        <i class="fas fa-users-viewfinder"></i>
+        <span class="label-text">Affiliate</span>
+      </a>
+    </li>
+    <li>
+      <a href="#" class="nav-item">
+        <i class="fas fa-crown text-warning"></i>
+        <span class="label-text">VIP Club</span>
+      </a>
+    </li>
+    <li>
+      <a href="#" class="nav-item">
+        <i class="fas fa-square-rss"></i>
+        <span class="label-text">Blog</span>
+      </a>
+    </li>
+    <li>
+      <a href="#" class="nav-item">
+        <i class="fas fa-comments"></i>
+        <span class="label-text">Forum</span>
+      </a>
+    </li>
+  </ul>
+
+  <div class="sidebar-divider"></div>
+
+  <ul class="nav-links secondary-links">
+    <li>
+      <a href="#" class="nav-item has-chevron">
+        <i class="fas fa-handshake"></i>
+        <span class="label-text">Sponsorships</span>
+        <i class="fas fa-chevron-down chevron-arrow"></i>
+      </a>
+    </li>
+    <li>
+      <a href="#" class="nav-item">
+        <i class="fas fa-shield-heart text-success"></i>
+        <span class="label-text">Responsible Gambling</span>
+      </a>
+    </li>
+    <li>
+      <a href="#" class="nav-item">
+        <i class="fas fa-headset text-info"></i>
+        <span class="label-text">Live Support</span>
+      </a>
+    </li>
+    <li>
+      <a href="#" class="nav-item has-chevron">
+        <i class="fas fa-globe"></i>
+        <span class="label-text">Language: English</span>
+        <i class="fas fa-chevron-down chevron-arrow"></i>
+      </a>
+    </li>
+  </ul>
+  }
+
+  <!-- === CASINO MODE === -->
+  @if (sidebarMode() === 'casino') {
+  <ul class="nav-links">
+    <li>
+      <a routerLink="/" class="nav-item">
+        <i class="fas fa-house"></i>
+        <span class="label-text">Home</span>
+      </a>
+    </li>
+    <li>
+      <a href="#" class="nav-item">
+        <i class="fas fa-bookmark text-primary"></i>
+        <span class="label-text">Saved Games</span>
+      </a>
+    </li>
+    <li>
+      <a href="#" class="nav-item">
+        <i class="fas fa-heart text-danger"></i>
+        <span class="label-text">Following</span>
+      </a>
+    </li>
+    <li>
+      <a href="#" class="nav-item">
+        <i class="fas fa-circle-play text-info"></i>
+        <span class="label-text">Continue Playing</span>
+      </a>
+    </li>
+    <li>
+      <a href="#" class="nav-item">
+        <i class="fas fa-wand-magic-sparkles text-warning"></i>
+        <span class="label-text">Games For You</span>
+      </a>
+    </li>
+    <li>
+      <a href="#" class="nav-item">
+        <i class="fas fa-receipt"></i>
+        <span class="label-text">My Bets</span>
+      </a>
+    </li>
+  </ul>
+
+  <div class="sidebar-section-header">
+    <span class="label-text">Games</span>
+  </div>
+
+  <ul class="nav-links">
+    <li>
+      <a routerLink="/casino/home" routerLinkActive="active" class="nav-item">
+        <i class="fas fa-dollar-sign text-success"></i>
+        <span class="label-text">Only on Stake</span>
+      </a>
+    </li>
+    <li>
+      <a href="#" class="nav-item">
+        <i class="fas fa-sparkles text-warning"></i>
+        <span class="label-text">New Releases</span>
+      </a>
+    </li>
+    <li>
+      <a href="#" class="nav-item">
+        <i class="fas fa-gamepad"></i>
+        <span class="label-text">Slots</span>
+      </a>
+    </li>
+    <li>
+      <a href="#" class="nav-item">
+        <i class="fas fa-fire text-danger"></i>
+        <span class="label-text">Stake Originals</span>
+      </a>
+    </li>
+    <li>
+      <a href="#" class="nav-item">
+        <i class="fas fa-vr-cardboard"></i>
+        <span class="label-text">Live Casino</span>
+      </a>
+    </li>
+    <li>
+      <a href="#" class="nav-item">
+        <i class="fas fa-microphone"></i>
+        <span class="label-text">Game Shows</span>
+      </a>
+    </li>
+  </ul>
+  }
+
+  <!-- === SPORTS MODE === -->
+  @if (sidebarMode() === 'sports') {
+  <ul class="nav-links">
+    <li>
+      <a routerLink="/" class="nav-item">
+        <i class="fas fa-house"></i>
+        <span class="label-text">Home</span>
+      </a>
+    </li>
+    <li>
+      <a href="#" class="nav-item">
+        <i class="fas fa-tower-broadcast text-danger"></i>
+        <span class="label-text">Live Events</span>
+      </a>
+    </li>
+    <li>
+      <a href="#" class="nav-item">
+        <i class="fas fa-receipt"></i>
+        <span class="label-text">My Bets</span>
+      </a>
+    </li>
+  </ul>
+
+  <div class="sidebar-section-header">
+    <span class="label-text">Sports</span>
+  </div>
+
+  <ul class="nav-links">
+    <li>
+      <a routerLink="/sports/home" routerLinkActive="active" class="nav-item">
+        <i class="fas fa-soccer-ball"></i>
+        <span class="label-text">Soccer</span>
+      </a>
+    </li>
+    <li>
+      <a href="#" class="nav-item">
+        <i class="fas fa-basketball-ball text-warning"></i>
+        <span class="label-text">Basketball</span>
+      </a>
+    </li>
+    <li>
+      <a href="#" class="nav-item">
+        <i class="fas fa-baseball-ball text-danger"></i>
+        <span class="label-text">Baseball</span>
+      </a>
+    </li>
+    <li>
+      <a href="#" class="nav-item">
+        <i class="fas fa-gamepad text-info"></i>
+        <span class="label-text">Esports</span>
+      </a>
+    </li>
+    <li>
+      <a href="#" class="nav-item">
+        <i class="fas fa-cricket-bat text-success"></i>
+        <span class="label-text">Cricket</span>
+      </a>
+    </li>
+    <li>
+      <a href="#" class="nav-item">
+        <i class="fas fa-football text-primary"></i>
+        <span class="label-text">American Football</span>
+      </a>
+    </li>
+  </ul>
+  }
+</div>

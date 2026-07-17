@@ -1,0 +1,473 @@
+.landing-container {
+  padding: 1rem 0.5rem;
+}
+
+/* Landing Hero Section */
+.landing-hero {
+  display: grid;
+  grid-template-columns: 1.2fr 1.8fr;
+  gap: 2.5rem;
+  align-items: center;
+  margin-bottom: 3rem;
+
+  @media (max-width: 992px) {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}
+
+.hero-info {
+  .hero-title {
+    font-size: 2.4rem;
+    font-weight: 800;
+    line-height: 1.25;
+    margin-bottom: 1.5rem;
+    background: linear-gradient(135deg, #ffffff 0%, var(--text-secondary) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .btn-register {
+    background-color: var(--primary-color);
+    border: none;
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 1.1rem;
+    padding: 0.8rem 2.5rem;
+    cursor: pointer;
+    border-radius: var(--border-radius);
+    transition: var(--transition-smooth);
+
+    &:hover {
+      background-color: #0b7dda;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(30, 144, 255, 0.45);
+    }
+  }
+}
+
+/* Social Sign Up */
+.signup-methods {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+
+  .signup-label {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .signup-buttons {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+
+    .social-btn {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      background-color: var(--card-bg);
+      border: 1px solid transparent;
+      color: var(--text-color);
+      padding: 0.6rem 1.2rem;
+      border-radius: var(--border-radius);
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: var(--transition-smooth);
+
+      i {
+        font-size: 1rem;
+      }
+
+      &:hover {
+        background-color: var(--hover-bg);
+        border-color: rgba(255, 255, 255, 0.1);
+        transform: translateY(-1px);
+      }
+    }
+  }
+}
+
+/* Choice Cards Grid */
+.choice-cards-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+
+  @media (max-width: 576px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.choice-card {
+  position: relative;
+  height: 220px;
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 1.25rem;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: var(--shadow-soft);
+  transition: var(--transition-smooth);
+
+  &.card-casino {
+    background: linear-gradient(135deg, #102636 0%, #0c1a24 100%);
+
+    .choice-card-bg {
+      background: radial-gradient(circle at 80% 20%, rgba(30, 144, 255, 0.15) 0%, transparent 60%);
+    }
+
+    .dice-cards-graphic {
+      color: var(--primary-color);
+    }
+  }
+
+  &.card-sports {
+    background: linear-gradient(135deg, #2b2015 0%, #17110c 100%);
+
+    .choice-card-bg {
+      background: radial-gradient(circle at 80% 20%, rgba(254, 155, 16, 0.15) 0%, transparent 60%);
+    }
+
+    .sports-graphic {
+      color: #fe9b10;
+    }
+  }
+
+  .choice-card-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+    transition: transform 0.5s ease;
+  }
+
+  .choice-card-content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    width: 100%;
+  }
+
+  /* Graphics style */
+  .dice-cards-graphic, .sports-graphic {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 1rem;
+    transition: transform 0.3s ease;
+
+    .heart-icon, .basket-icon {
+      opacity: 0.8;
+      transform: rotate(15deg);
+    }
+  }
+
+  .card-footer-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: auto;
+
+    .card-label {
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: var(--text-color);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .online-count {
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      background-color: rgba(0, 0, 0, 0.4);
+      padding: 0.25rem 0.6rem;
+      border-radius: 20px;
+      font-weight: 700;
+
+      .dot {
+        width: 6px;
+        height: 6px;
+        background-color: var(--primary-color);
+        border-radius: 50%;
+        box-shadow: 0 0 8px var(--primary-color);
+        animation: pulse 1.5s infinite;
+      }
+    }
+  }
+
+  &:hover {
+    transform: translateY(-8px);
+    border-color: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+
+    .choice-card-bg {
+      transform: scale(1.1);
+    }
+
+    .dice-cards-graphic, .sports-graphic {
+      transform: scale(1.1) rotate(-5deg);
+    }
+  }
+}
+
+/* Search Bar */
+.search-section {
+  margin-bottom: 3rem;
+
+  .search-input-wrapper {
+    position: relative;
+    max-width: 600px;
+    width: 100%;
+
+    .search-icon {
+      position: absolute;
+      left: 1.25rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-secondary);
+      font-size: 1.1rem;
+      pointer-events: none;
+    }
+
+    .search-input {
+      width: 100%;
+      background-color: var(--card-bg);
+      border: 2px solid transparent;
+      color: var(--text-color);
+      padding: 0.85rem 1rem 0.85rem 3rem;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 600;
+      transition: var(--transition-smooth);
+      outline: none;
+
+      &::placeholder {
+        color: var(--text-secondary);
+      }
+
+      &:focus {
+        border-color: var(--hover-bg);
+        background-color: var(--hover-bg);
+        box-shadow: 0 0 15px rgba(47, 69, 83, 0.3);
+      }
+    }
+  }
+}
+
+/* Trending Section */
+.trending-section {
+  .section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+
+    h2 {
+      font-size: 1.3rem;
+      font-weight: 800;
+      margin: 0;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+
+      .animate-pulse {
+        animation: pulse 1.5s infinite;
+      }
+    }
+
+    .view-all {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      font-weight: 700;
+      text-decoration: none;
+      transition: color 0.2s;
+
+      &:hover {
+        color: var(--text-color);
+      }
+    }
+  }
+
+  .games-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.25rem;
+
+    @media (max-width: 992px) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    @media (max-width: 576px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+}
+
+/* Trending Game Card (Redesigned) */
+.game-card {
+  background: var(--card-bg);
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+  border: 1px solid transparent;
+  box-shadow: var(--shadow-soft);
+
+  &:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.45);
+    border-color: rgba(255, 255, 255, 0.1);
+    background-color: var(--hover-bg);
+
+    .card-image-wrapper {
+      filter: brightness(1.15);
+      &::after {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1.1);
+      }
+    }
+  }
+
+  .card-image-wrapper {
+    height: 190px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: var(--transition-smooth);
+
+    /* Play Button on Hover overlays */
+    &::after {
+      content: '\f144'; /* FontAwesome Play Icon */
+      font-family: 'Font Awesome 6 Free';
+      font-weight: 900;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0.9);
+      font-size: 3rem;
+      color: var(--primary-color);
+      opacity: 0;
+      transition: var(--transition-smooth);
+      z-index: 2;
+      filter: drop-shadow(0 2px 10px rgba(30, 144, 255, 0.4));
+    }
+
+    /* Gradient backgrounds */
+    &.game-1 { background: linear-gradient(135deg, #16a085 0%, #2c3e50 100%); }
+    &.game-2 { background: linear-gradient(135deg, #d35400 0%, #2c3e50 100%); }
+    &.game-3 { background: linear-gradient(135deg, #2980b9 0%, #2c3e50 100%); }
+    &.game-4 { background: linear-gradient(135deg, #8e44ad 0%, #2c3e50 100%); }
+    &.game-5 { background: linear-gradient(135deg, #27ae60 0%, #2c3e50 100%); }
+    &.game-6 { background: linear-gradient(135deg, #f39c12 0%, #2c3e50 100%); }
+    &.game-7 { background: linear-gradient(135deg, #c0392b 0%, #2c3e50 100%); }
+    &.game-8 { background: linear-gradient(135deg, #7f8c8d 0%, #2c3e50 100%); }
+
+    .game-badge {
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+      font-size: 0.72rem;
+      background: var(--primary-color);
+      padding: 0.2rem 0.55rem;
+      border-radius: 4px;
+      color: #ffffff;
+      font-weight: 800;
+      z-index: 3;
+    }
+
+    /* Live Player Count Badge */
+    .live-player-count {
+      position: absolute;
+      bottom: 10px;
+      left: 10px;
+      font-size: 0.72rem;
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(4px);
+      padding: 0.2rem 0.55rem;
+      border-radius: 4px;
+      color: #ffffff;
+      font-weight: 700;
+      z-index: 3;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+
+      i {
+        color: var(--primary-color);
+      }
+    }
+
+    /* Favorite heart Icon Button */
+    .btn-favorite {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(4px);
+      border: none;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      cursor: pointer;
+      z-index: 3;
+      transition: var(--transition-smooth);
+
+      &:hover {
+        background-color: var(--hover-bg);
+        color: #ff3366;
+        transform: scale(1.1);
+      }
+    }
+  }
+
+  .game-info {
+    padding: 0.85rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+
+    .game-title {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--text-color);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .game-provider {
+      font-size: 0.78rem;
+      color: var(--text-secondary);
+    }
+  }
+}
+
+/* Animations */
+@keyframes pulse {
+  0% { opacity: 0.6; }
+  50% { opacity: 1; }
+  100% { opacity: 0.6; }
+}

@@ -1,0 +1,46 @@
+<div class="layout-container">
+  <app-header (toggleSidebar)="toggleSidebar()"></app-header>
+  
+  <div class="layout-main">
+    <!-- Sidebar backdrop overlay (mobile only) -->
+    <div class="mobile-sidebar-backdrop" [class.show]="sidebarOpen()" (click)="closeSidebar()"></div>
+
+    <!-- Sidebar component -->
+    <app-sidebar [class.collapsed]="!sidebarOpen()" [class.mobile-open]="sidebarOpen()" (toggleSidebar)="toggleSidebar()"></app-sidebar>
+    
+    <div class="layout-content-wrapper" [class.sidebar-collapsed]="!sidebarOpen()">
+      <main class="layout-content">
+        <router-outlet></router-outlet>
+      </main>
+      <app-footer></app-footer>
+    </div>
+  </div>
+
+  <!-- Mobile Bottom Navigation Bar (mobile only) -->
+  <div class="mobile-bottom-nav">
+    <button class="nav-item-btn" (click)="toggleSidebar()">
+      <i class="fas fa-list-ul"></i>
+      <span>Browse</span>
+    </button>
+    
+    <a routerLink="/casino/home" routerLinkActive="active" class="nav-item-btn">
+      <i class="fas fa-gem"></i>
+      <span>Casino</span>
+    </a>
+    
+    <button class="nav-item-btn">
+      <i class="fas fa-receipt"></i>
+      <span>Bets</span>
+    </button>
+    
+    <a routerLink="/sports/home" routerLinkActive="active" class="nav-item-btn">
+      <i class="fas fa-soccer-ball"></i>
+      <span>Sports</span>
+    </a>
+    
+    <button class="nav-item-btn">
+      <i class="fas fa-comments"></i>
+      <span>Chat</span>
+    </button>
+  </div>
+</div>
