@@ -1,1 +1,184 @@
-<p>footer works!</p>
+<div class="footer-wrapper" (click)="closeDropdown()">
+  <!-- Top Grid: 6 Columns -->
+  <div class="footer-grid">
+    <!-- Casino Column -->
+    <div class="footer-column" [class.open]="activeAccordions['casino']">
+      <h4 class="column-header" (click)="toggleAccordion('casino'); $event.stopPropagation()">
+        <span>Casino</span>
+        <i class="fas fa-chevron-down accordion-arrow"></i>
+      </h4>
+      <ul class="column-links">
+        <li><a href="#">Casino Games</a></li>
+        <li><a href="#">Slots</a></li>
+        <li><a href="#">Live Casino</a></li>
+        <li><a href="#">Game Shows</a></li>
+        <li><a href="#">Blackjack</a></li>
+        <li><a href="#">Baccarat</a></li>
+        <li><a href="#">Roulette</a></li>
+        <li><a href="#">Table Games</a></li>
+        <li><a href="#">Lightning Roulette</a></li>
+        <li><a href="#">Live Roulette</a></li>
+      </ul>
+    </div>
+
+    <!-- Sports Column -->
+    <div class="footer-column" [class.open]="activeAccordions['sports']">
+      <h4 class="column-header" (click)="toggleAccordion('sports'); $event.stopPropagation()">
+        <span>Sports</span>
+        <i class="fas fa-chevron-down accordion-arrow"></i>
+      </h4>
+      <ul class="column-links">
+        <li><a href="#">Sportsbook</a></li>
+        <li><a href="#">Live Sports</a></li>
+        <li><a href="#">Soccer</a></li>
+        <li><a href="#">Basketball</a></li>
+        <li><a href="#">Tennis</a></li>
+        <li><a href="#">Formula 1</a></li>
+        <li><a href="#">American Football</a></li>
+        <li><a href="#">Baseball</a></li>
+        <li><a href="#">Ice Hockey</a></li>
+        <li><a href="#">MMA</a></li>
+      </ul>
+    </div>
+
+    <!-- Support Column -->
+    <div class="footer-column" [class.open]="activeAccordions['support']">
+      <h4 class="column-header" (click)="toggleAccordion('support'); $event.stopPropagation()">
+        <span>Support</span>
+        <i class="fas fa-chevron-down accordion-arrow"></i>
+      </h4>
+      <ul class="column-links">
+        <li><a href="#" class="link-has-icon"><i class="fas fa-circle-question"></i> Help Center</a></li>
+        <li><a href="#">Support</a></li>
+        <li><a href="#">Responsible Gambling</a></li>
+        <li><a href="#" class="link-has-icon"><i class="fas fa-shield-halved"></i> Licensing info</a></li>
+        <li><a href="#">Live Support</a></li>
+        <li><a href="#">Self Exclusion</a></li>
+        <li><a href="#">Dispute Resolution</a></li>
+      </ul>
+    </div>
+
+    <!-- About Us Column -->
+    <div class="footer-column" [class.open]="activeAccordions['aboutUs']">
+      <h4 class="column-header" (click)="toggleAccordion('aboutUs'); $event.stopPropagation()">
+        <span>About Us</span>
+        <i class="fas fa-chevron-down accordion-arrow"></i>
+      </h4>
+      <ul class="column-links">
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">Careers</a></li>
+        <li><a href="#">Privacy Notice</a></li>
+        <li><a href="#">Cookie Notice</a></li>
+        <li><a href="#">Terms of Service</a></li>
+      </ul>
+    </div>
+
+    <!-- Partners Info Column -->
+    <div class="footer-column" [class.open]="activeAccordions['partnersInfo']">
+      <h4 class="column-header" (click)="toggleAccordion('partnersInfo'); $event.stopPropagation()">
+        <span>Partners Info</span>
+        <i class="fas fa-chevron-down accordion-arrow"></i>
+      </h4>
+      <ul class="column-links">
+        <li><a href="#">Sponsorships</a></li>
+        <li><a href="#">Affiliates</a></li>
+        <li><a href="#">Media Assets</a></li>
+        <li><a href="#">Advertisements</a></li>
+        <li><a href="#">VIP Club</a></li>
+      </ul>
+    </div>
+
+    <!-- FAQ Column -->
+    <div class="footer-column" [class.open]="activeAccordions['faq']">
+      <h4 class="column-header" (click)="toggleAccordion('faq'); $event.stopPropagation()">
+        <span>FAQ</span>
+        <i class="fas fa-chevron-down accordion-arrow"></i>
+      </h4>
+      <ul class="column-links">
+        <li><a href="#">General Answers</a></li>
+        <li><a href="#">Online Casino Rules</a></li>
+        <li><a href="#">Sports Betting Rules</a></li>
+        <li><a href="#">Responsible Gaming FAQ</a></li>
+        <li><a href="#">Stake VIP Guide</a></li>
+        <li><a href="#">Crypto Casino FAQ</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Social Icons -->
+  <div class="footer-socials">
+    <a href="#" aria-label="Facebook" target="_blank"><i class="fab fa-facebook-f"></i></a>
+    <a href="#" aria-label="Twitter" target="_blank"><i class="fab fa-twitter"></i></a>
+    <a href="#" aria-label="Instagram" target="_blank"><i class="fab fa-instagram"></i></a>
+    <a href="#" aria-label="YouTube" target="_blank"><i class="fab fa-youtube"></i></a>
+    <a href="#" aria-label="Telegram" target="_blank"><i class="fab fa-telegram"></i></a>
+    <a href="#" aria-label="Discord" target="_blank"><i class="fab fa-discord"></i></a>
+    <a href="#" aria-label="Steam" target="_blank"><i class="fab fa-steam"></i></a>
+    <a href="#" aria-label="LinkedIn" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+  </div>
+
+  <!-- Divider Line -->
+  <div class="footer-divider"></div>
+
+  <!-- Bottom Section: Disclaimer, Dropdown, Compliance Logos -->
+  <div class="footer-bottom">
+    <p class="footer-disclaimer">
+      Stake is owned and operated by Medium Rare N.V., registration number: 145353, registered address: Korporaal Weg 10, Willemstad, Curaçao. Contact us at <a href="mailto:support@stake.com">support@stake.com</a>. Payment agent is Medium Rare Limited, address: 7-9 Riga Fereou, LIZANTIA COURT, Office 310, Agioi Omologites, 1087 Nicosia, Cyprus. Stake is authorized and regulated by the Government of Curaçao under license No. 8048/JAZ.
+    </p>
+
+    <!-- Language Selector Dropdown -->
+    <div class="language-selector-wrapper">
+      <button class="language-btn" (click)="toggleDropdown($event)">
+        <i class="fas fa-globe"></i>
+        <span>{{ currentLanguage }}</span>
+        <i class="fas fa-chevron-down chevron-icon" [class.rotated]="isDropdownOpen"></i>
+      </button>
+      <div class="language-dropdown-menu" [class.show]="isDropdownOpen" (click)="$event.stopPropagation()">
+        <div class="language-dropdown-grid">
+          @for (lang of languages; track lang) {
+            <button 
+              type="button"
+              class="language-option" 
+              [class.active]="lang === currentLanguage" 
+              (click)="selectLanguage(lang)"
+            >
+              {{ lang }}
+            </button>
+          }
+        </div>
+      </div>
+    </div>
+
+    <!-- Compliance Logos -->
+    <div class="compliance-logos">
+      <!-- Stake Wordmark Logo -->
+      <a href="#" aria-label="Stake Logo" class="compliance-logo-link">
+        <svg viewBox="0 0 100 30" class="logo-stake" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M9.47 22.75c1.47.53 3.32.74 4.54.74 3.73 0 5.43-1.63 5.43-3.69 0-3.95-8.68-4.2-8.68-7.58 0-1.16 1.05-1.9 2.76-1.9 1.47 0 3.27.37 4.56.95l.7-2.73c-1.37-.58-3.32-.85-4.88-.85-4.04 0-6.68 1.95-6.68 4.79 0 4.16 8.7 4.16 8.7 7.79 0 1.27-1.16 1.84-2.82 1.84-1.89 0-3.95-.58-5.26-1.22l-.85 2.86zm14.15-11.45h-1.84v-2.84h1.84V4.9h3.42v3.56h2.79v2.84h-2.79v7.71c0 1.21.5 1.76 1.45 1.76.5 0 .97-.13 1.34-.37l.63 2.68c-.76.47-1.92.74-3.13.74-2.92 0-3.66-1.58-3.66-4.05v-8.47zm13.1 11.77c-1.29.58-2.87.84-4.29.84-3.53 0-5.18-1.74-5.18-4.82 0-3.37 2.11-5.13 6.03-5.13h3.05v-.53c0-1.37-.76-2.11-2.45-2.11-1.39 0-3.03.37-4.29.89l-.74-2.66c1.55-.74 3.63-1.08 5.71-1.08 3.84 0 5.82 1.74 5.82 4.95v7.69c0 1.39.11 2.37.37 2.92h-3.55c-.21-.47-.37-1.05-.48-1.66zm-.39-6.37h-2.58c-1.84 0-2.71.69-2.71 2.11 0 1.21.68 1.9 2.05 1.9 1.26 0 2.45-.63 3.03-1.42v-2.59zm15.15-5.4h3.69l-4.58 5.48 4.95 6.29h-4.03l-3.37-4.63-1.11 1.32v3.31H50.9V2.11h3.42v10.5l3.92-4.11zm13.44 5.92c-.08-3.39-2.18-5.32-5.1-5.32-3.13 0-5.18 2.18-5.18 5.37 0 3.16 2.05 5.37 5.24 5.37 1.84 0 3.39-.53 4.53-1.32l.84 2.45c-1.47 1.08-3.66 1.63-5.84 1.63-5.16 0-8.24-3.37-8.24-8.13 0-4.84 3.13-8.26 8.24-8.26 4.87 0 7.74 3.05 7.63 7.84H64.92z" fill="#B1BAD3" />
+        </svg>
+      </a>
+
+      <!-- Gamble Aware / 18+ badge -->
+      <div class="compliance-badge badge-gambleaware">
+        <svg viewBox="0 0 120 40" class="logo-gambleaware" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="0.5" y="0.5" width="119" height="39" rx="6" stroke="#2F4553" fill="#1A2C38" stroke-width="1.5" />
+          <path d="M 22,8 L 32,18 L 22,28 L 12,18 Z" fill="#F8BF15" />
+          <path d="M 23,11 L 19,19 L 23,19 L 21,25 L 26,17 L 22,17 Z" fill="#000000" />
+          <text x="40" y="18" font-family="'Inter', sans-serif" font-weight="900" font-size="9" fill="#FFFFFF" letter-spacing="0.5">BE GAMBLE</text>
+          <text x="40" y="29" font-family="'Inter', sans-serif" font-weight="900" font-size="9" fill="#F8BF15" letter-spacing="0.5">AWARE.ORG</text>
+        </svg>
+      </div>
+
+      <!-- GamCare Certified Badge -->
+      <div class="compliance-badge badge-gamcare">
+        <svg viewBox="0 0 140 40" class="logo-gamcare" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="0.5" y="0.5" width="139" height="39" rx="6" stroke="#2F4553" fill="#1A2C38" stroke-width="1.5" />
+          <circle cx="20" cy="20" r="11" fill="#00A266" />
+          <path d="M 15,20 L 18.5,23.5 L 25.5,16.5" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+          <text x="38" y="19" font-family="'Inter', sans-serif" font-weight="900" font-size="10" fill="#FFFFFF" letter-spacing="0.5">GAMCARE</text>
+          <text x="38" y="30" font-family="'Inter', sans-serif" font-weight="700" font-size="7.5" fill="#00A266" letter-spacing="0.8">CERTIFIED</text>
+        </svg>
+      </div>
+    </div>
+  </div>
+</div>

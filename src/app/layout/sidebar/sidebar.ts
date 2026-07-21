@@ -2,6 +2,7 @@ import { Component, inject, signal, output } from '@angular/core';
 import { RouterLink, RouterLinkActive, Router, NavigationEnd } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { filter } from 'rxjs/operators';
+import { Common } from '../../core/services/common';
 
 @Component({
   selector: 'app-sidebar',
@@ -9,21 +10,21 @@ import { filter } from 'rxjs/operators';
   templateUrl: './sidebar.html',
   styleUrl: './sidebar.scss',
 })
-export class Sidebar {
-  toggleSidebar = output<void>();
-  private router = inject(Router);
 
+export class Sidebar {
+
+  public toggleSidebar = output<void>();
+  private router = inject(Router);
+  commonService = inject(Common);
   sidebarMode = signal<'general' | 'casino' | 'sports'>('general');
 
   constructor() {
-    // Listen to route changes
     this.router.events
       .pipe(filter((event) => event instanceof NavigationEnd))
       .subscribe((event: any) => {
         this.updateSidebarMode(event.urlAfterRedirects);
       });
 
-    // Initial state
     this.updateSidebarMode(this.router.url);
   }
 

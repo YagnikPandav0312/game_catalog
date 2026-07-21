@@ -1,51 +1,42 @@
 <div class="casino-container">
-
-  <!-- Top Promotion Banners Carousel/Grid -->
   <div class="promo-grid">
-    <!-- Banner 1: Guardian Riches -->
     <div class="promo-card card-guardian">
       <div class="promo-content">
         <span class="promo-badge badge-only">Only on Stake</span>
         <h3 class="promo-title">Guardian Riches</h3>
         <p class="promo-subtitle">Treasure Worth Seeking</p>
-        <button class="btn-play">Play Now!</button>
+        <button class="btn-play" (click)="commonService.playGame()">Play Now!</button>
       </div>
       <div class="promo-graphic graphic-golem">
-        <!-- Green stone golem representation -->
         <i class="fas fa-robot golem-icon text-success"></i>
       </div>
     </div>
 
-    <!-- Banner 2: 2x VIP Progress -->
     <div class="promo-card card-vip">
       <div class="promo-content">
         <span class="promo-badge badge-promo">Promotion</span>
         <h3 class="promo-title">2x VIP Progress</h3>
         <p class="promo-subtitle">Boosted VIP on Only on Stake Games</p>
-        <button class="btn-play">Play Now!</button>
+        <button class="btn-play" (click)="commonService.playGame()">Play Now!</button>
       </div>
       <div class="promo-graphic graphic-headphones">
-        <!-- Blue headphones representation -->
         <i class="fas fa-headphones headphones-icon text-info"></i>
       </div>
     </div>
 
-    <!-- Banner 3: Poker Series -->
     <div class="promo-card card-poker">
       <div class="promo-content">
         <span class="promo-badge badge-promo">Promotion</span>
         <h3 class="promo-title">World KO Poker Series</h3>
         <p class="promo-subtitle">Over $1,000,000 in guarantees!</p>
-        <button class="btn-play">Play Now</button>
+        <button class="btn-play" (click)="commonService.playGame()">Play Now</button>
       </div>
       <div class="promo-graphic graphic-poker">
-        <!-- Gold soccer ball & chips representation -->
         <i class="fas fa-coins poker-icon text-warning"></i>
       </div>
     </div>
   </div>
 
-  <!-- Search Bar -->
   <div class="search-section">
     <div class="search-input-wrapper">
       <i class="fas fa-search search-icon"></i>
@@ -53,32 +44,15 @@
     </div>
   </div>
 
-  <!-- Casino Sub-navigation -->
   <div class="casino-subnav">
-    <button class="subnav-btn active">
-      <i class="fas fa-house-chimney"></i> Casino Home
+    @for (item of commonService.categories(); track item.game_categorie_id) {
+    <button class="subnav-btn" [class.active]="selectedCategory() === item.game_categorie_id"
+      (click)="selectCategory(item)">
+      <i class="fas fa-house-chimney"></i> {{item.game_categorie_name}}
     </button>
-    <button class="subnav-btn">
-      <i class="fas fa-dollar-sign"></i> Only on Stake
-    </button>
-    <button class="subnav-btn">
-      <i class="fas fa-sparkles"></i> New Releases
-    </button>
-    <button class="subnav-btn">
-      <i class="fas fa-fire"></i> Stake Originals
-    </button>
-    <button class="subnav-btn">
-      <i class="fas fa-gamepad"></i> Slots
-    </button>
-    <button class="subnav-btn">
-      <i class="fas fa-vr-cardboard"></i> Live Casino
-    </button>
-    <button class="subnav-btn">
-      <i class="fas fa-clock-rotate-left"></i> Continue Playing
-    </button>
+    }
   </div>
 
-  <!-- Stake Originals Section -->
   <div class="games-section">
     <div class="section-header">
       <h2><i class="fas fa-fire text-danger"></i> Stake Originals</h2>
@@ -86,8 +60,8 @@
     </div>
 
     <div class="originals-grid">
-      @for (game of games().slice(0, showLimitGames()); track $index) {
-      <div class="original-card bg-dice">
+      @for (game of commonService.games().slice(0, showLimitGames()); track $index) {
+      <div class="original-card bg-dice" (click)="commonService.playGame(game)" style="cursor: pointer">
         <div class="original-card-body">
           <img [src]="game.thumbnail" [alt]="game.game_name" class="game-image">
         </div>
@@ -111,7 +85,7 @@
       <a href="#" class="view-all">View All</a>
     </div>
     <div class="publishers-grid">
-      @for (provider of providers().slice(0, showLimit()); track provider.provider_id) {
+      @for (provider of commonService.providers().slice(0, showLimit()); track provider.provider_id) {
       <div class="publisher-item">
         <div class="publisher-card">
           <img [src]="provider.logo" [alt]="provider.provider_name" class="provider-logo">

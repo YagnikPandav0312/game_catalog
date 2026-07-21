@@ -5,7 +5,7 @@
     <div class="hero-info">
       <h1 class="hero-title">The World's Largest Online Casino and Sportsbook</h1>
       <button class="btn btn-register btn-lg mb-4">Register</button>
-      
+
       <div class="signup-methods">
         <span class="signup-label">Or Sign Up With</span>
         <div class="signup-buttons">
@@ -56,7 +56,6 @@
     </div>
   </div>
 
-  <!-- Search Bar -->
   <div class="search-section">
     <div class="search-input-wrapper">
       <i class="fas fa-search search-icon"></i>
@@ -64,117 +63,53 @@
     </div>
   </div>
 
-  <!-- Trending Games Section -->
-  <div class="trending-section">
+  <div class="games-section">
     <div class="section-header">
-      <h2><i class="fas fa-fire text-danger animate-pulse"></i> Trending Games</h2>
+      <h2><i class="fas fa-fire text-danger"></i> Stake Originals</h2>
       <a href="#" class="view-all">View All</a>
     </div>
 
-    <div class="games-grid">
-      <!-- Game 1 -->
-      <div class="game-card">
-        <div class="card-image-wrapper game-1">
-          <span class="game-badge">1000x</span>
-          <button class="btn-favorite" aria-label="Favorite"><i class="far fa-heart"></i></button>
-          <span class="live-player-count"><i class="fas fa-eye"></i> 12.8k</span>
+    <div class="originals-grid">
+      @for (game of commonService.games().slice(0, showLimitGames()); track $index) {
+      <div class="original-card bg-dice" (click)="commonService.playGame(game)" style="cursor: pointer">
+        <div class="original-card-body">
+          <img [src]="game.thumbnail" [alt]="game.game_name" class="game-image">
         </div>
-        <div class="game-info">
-          <span class="game-title">Gates of Olympus 1000</span>
-          <span class="game-provider">Pragmatic Play</span>
+        <div class="original-card-footer">
+          <span class="game-name">{{game.game_name}}</span>
         </div>
       </div>
-
-      <!-- Game 2 -->
-      <div class="game-card">
-        <div class="card-image-wrapper game-2">
-          <span class="game-badge">1000x</span>
-          <button class="btn-favorite" aria-label="Favorite"><i class="far fa-heart"></i></button>
-          <span class="live-player-count"><i class="fas fa-eye"></i> 9.4k</span>
-        </div>
-        <div class="game-info">
-          <span class="game-title">Sweet Bonanza 1000</span>
-          <span class="game-provider">Pragmatic Play</span>
-        </div>
-      </div>
-
-      <!-- Game 3 -->
-      <div class="game-card">
-        <div class="card-image-wrapper game-3">
-          <span class="game-badge">Megaways</span>
-          <button class="btn-favorite" aria-label="Favorite"><i class="far fa-heart"></i></button>
-          <span class="live-player-count"><i class="fas fa-eye"></i> 4.5k</span>
-        </div>
-        <div class="game-info">
-          <span class="game-title">The Dog House Megaways</span>
-          <span class="game-provider">Pragmatic Play</span>
-        </div>
-      </div>
-
-      <!-- Game 4 -->
-      <div class="game-card">
-        <div class="card-image-wrapper game-4">
-          <span class="game-badge">New</span>
-          <button class="btn-favorite" aria-label="Favorite"><i class="far fa-heart"></i></button>
-          <span class="live-player-count"><i class="fas fa-eye"></i> 2.1k</span>
-        </div>
-        <div class="game-info">
-          <span class="game-title">Grug Make Fire</span>
-          <span class="game-provider">Hacksaw Gaming</span>
-        </div>
-      </div>
-
-      <!-- Game 5 -->
-      <div class="game-card">
-        <div class="card-image-wrapper game-5">
-          <span class="game-badge">Exclusive</span>
-          <button class="btn-favorite" aria-label="Favorite"><i class="far fa-heart"></i></button>
-          <span class="live-player-count"><i class="fas fa-eye"></i> 3.7k</span>
-        </div>
-        <div class="game-info">
-          <span class="game-title">Made Men</span>
-          <span class="game-provider">Red Tiger</span>
-        </div>
-      </div>
-
-      <!-- Game 6 -->
-      <div class="game-card">
-        <div class="card-image-wrapper game-6">
-          <span class="game-badge">Scatter</span>
-          <button class="btn-favorite" aria-label="Favorite"><i class="far fa-heart"></i></button>
-          <span class="live-player-count"><i class="fas fa-eye"></i> 8.9k</span>
-        </div>
-        <div class="game-info">
-          <span class="game-title">Gates of Olympus Super Scatter</span>
-          <span class="game-provider">Pragmatic Play</span>
-        </div>
-      </div>
-
-      <!-- Game 7 -->
-      <div class="game-card">
-        <div class="card-image-wrapper game-7">
-          <span class="game-badge">1000x</span>
-          <button class="btn-favorite" aria-label="Favorite"><i class="far fa-heart"></i></button>
-          <span class="live-player-count"><i class="fas fa-eye"></i> 11.2k</span>
-        </div>
-        <div class="game-info">
-          <span class="game-title">Sugar Rush 1000</span>
-          <span class="game-provider">Pragmatic Play</span>
-        </div>
-      </div>
-
-      <!-- Game 8 -->
-      <div class="game-card">
-        <div class="card-image-wrapper game-8">
-          <span class="game-badge">Wilds</span>
-          <button class="btn-favorite" aria-label="Favorite"><i class="far fa-heart"></i></button>
-          <span class="live-player-count"><i class="fas fa-eye"></i> 6.3k</span>
-        </div>
-        <div class="game-info">
-          <span class="game-title">Wanted Dead or a Wild</span>
-          <span class="game-provider">Hacksaw Gaming</span>
-        </div>
-      </div>
+      }
     </div>
+
+    @if (hasMoreCasino()) {
+    <div class="load-more-container">
+      <button class="btn-load-more" (click)="loadMoreCasino()">Load More</button>
+    </div>
+    }
+  </div>
+
+  <div class="games-section">
+    <div class="section-header mt-4">
+      <h2><i class="fas fa-fire text-danger"></i> Sports</h2>
+      <a href="#" class="view-all">View All</a>
+    </div>
+    <div class="originals-grid">
+      @for (game of commonService.sport().slice(0, showLimitSport()); track $index) {
+      <div class="original-card bg-dice" (click)="commonService.playGame(game)" style="cursor: pointer">
+        <div class="original-card-body">
+          <img [src]="game.logo" [alt]="game.sport_name" class="game-image">
+        </div>
+        <div class="original-card-footer">
+          <span class="game-name">{{game.sport_name}}</span>
+        </div>
+      </div>
+      }
+    </div>
+    @if (hasMoreSport()) {
+    <div class="load-more-container">
+      <button class="btn-load-more" (click)="loadMoreSport()">Load More</button>
+    </div>
+    }
   </div>
 </div>

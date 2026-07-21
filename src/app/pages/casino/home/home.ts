@@ -1,7 +1,7 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, Inject, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Common } from '../../../core/services/common';
-import { Casino } from '../../../core/services/casino';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-casino-home',
@@ -12,41 +12,23 @@ import { Casino } from '../../../core/services/casino';
 
 export class CasinoHome {
 
-  private casinService = inject(Casino);
-  public games = signal<any[]>([]);
-  public providers = signal<any[]>([]);
-  public categories = signal<any[]>([]);
   public commonService = inject(Common);
-
-  // Publishers pagination limit
   public showLimit = signal<number>(8);
-  // Games pagination limit
   public showLimitGames = signal<number>(8);
-  // Active selected category tracking
   public selectedCategory = signal<number | null>(null);
+  public route = inject(ActivatedRoute);
+  public router = inject(Router);
 
   constructor() {
-    this.getHome();
-  }
+    // this.route.paramMap.subscribe(params => {
+    //   const gameTypeIds = JSON.parse(params.get('game_type_id') || '[]');
 
-  getHome() {
-    this.commonService.showSpinner();
-    this.casinService.getHome().subscribe({
-      next: (res: any) => {
-        if (res && res.status.code === 0) {
-          this.games.set(res.data.games);
-          this.providers.set(res.data.providers);
-          this.categories.set(res.data.categories)
-          this.commonService.hideSpinner();
-        } else {
-          this.commonService.manageStatus(res.status);
-          this.commonService.hideSpinner();
-        }
-      }, error: (err: any) => {
-        this.commonService.manageStatus(err.status);
-        this.commonService.hideSpinner();
-      }
-    })
+    //   const filteredGames = this.games().filter(game =>
+    //     game.game_type_id.some((id: number) => gameTypeIds.includes(id))
+    //   );
+
+    //   this.games.set(filteredGames);
+    // });
   }
 
   // Load more publishers
@@ -56,7 +38,7 @@ export class CasinoHome {
 
   // Check if there are more publishers to show
   hasMoreProviders(): boolean {
-    return this.providers().length > this.showLimit();
+    return this.commonService.providers().length > this.showLimit();
   }
 
   // Load more games
@@ -66,7 +48,7 @@ export class CasinoHome {
 
   // Check if there are more games to show
   hasMoreGames(): boolean {
-    return this.games().length > this.showLimitGames();
+    return this.commonService.games().length > this.showLimitGames();
   }
 
   // Get realistic player count based on provider ID
@@ -87,8 +69,10 @@ export class CasinoHome {
   }
 
   // Set selected category ID
-  selectCategory(categoryId: number | null) {
-    this.selectedCategory.set(categoryId);
+  selectCategory(item: any) {
+    this.selectedCategory.set(item.game_categorie_id);
+    // this.router.navigate(['/casino/home', item.game_type_id
+    // ]);
   }
 }
 

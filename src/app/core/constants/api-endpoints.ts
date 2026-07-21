@@ -1,6 +1,7 @@
 export const API = {
     home_api: {
-        get_home: '/home/home'
+        get_casino_home: '/casino/get_casino_home',
+        get_sport_home: '/sport/get_sport_home'
     },
     player_api: {
         register: '/player/register',

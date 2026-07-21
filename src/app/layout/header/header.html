@@ -4,22 +4,26 @@
       <i class="fas fa-bars"></i>
     </button>
     
-    <!-- <div class="header-switcher">
-      <a routerLink="/casino/home" routerLinkActive="active" class="switcher-btn btn-casino">
-        <i class="fas fa-dice"></i> Casino
-      </a>
-      <a routerLink="/sports/home" routerLinkActive="active" class="switcher-btn btn-sports">
-        <i class="fas fa-soccer-ball"></i> Sports
-      </a>
-    </div> -->
-
     <a routerLink="/" class="logo-link">
       <span class="logo-text">Fun88</span>
     </a>
   </div>
 
   <div class="header-right">
-    <button class="btn-login">Login</button>
-    <button class="btn-register">Register</button>
+    @if (authService.isLoggedIn()) {
+      <div class="user-profile-bar">
+        <div class="user-info">
+          <i class="fas fa-user-circle user-avatar"></i>
+          <span class="username">{{ authService.currentUser()?.username }}</span>
+        </div>
+        <button class="btn-logout" (click)="Logout()" title="Logout">
+          <i class="fas fa-right-from-bracket"></i>
+          <span>Logout</span>
+        </button>
+      </div>
+    } @else {
+      <button class="btn-login" (click)="onLogin()">Login</button>
+      <button class="btn-register" (click)="onRegister()">Register</button>
+    }
   </div>
 </header>

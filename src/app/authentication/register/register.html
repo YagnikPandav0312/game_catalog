@@ -1,1 +1,116 @@
-<p>register works!</p>
+<div class="auth-modal-container">
+  <!-- Close Button -->
+  <button type="button" class="btn-close-modal" (click)="closeModal()" aria-label="Close">
+    <i class="fas fa-times"></i>
+  </button>
+
+  <!-- Modal Header -->
+  <div class="auth-header">
+    <div class="auth-brand">
+      <i class="fas fa-gamepad brand-icon"></i>
+      <span class="brand-name">GAME CATALOG</span>
+    </div>
+    <h2 class="auth-title">Create Account</h2>
+    <p class="auth-subtitle">Join Game Catalog to start playing and winning rewards</p>
+  </div>
+
+  <!-- Register Form -->
+  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="auth-form">
+    <!-- Username -->
+    <div class="form-group mb-3">
+      <label for="username" class="form-label">Username</label>
+      <div class="input-wrapper">
+        <i class="fas fa-user input-icon"></i>
+        <input
+          type="text"
+          id="username"
+          formControlName="username"
+          placeholder="Choose username"
+          class="form-control auth-input"
+          [class.is-invalid]="submitted() && f['username'].errors"
+        />
+      </div>
+      @if (submitted() && f['username'].errors) {
+        <div class="invalid-feedback d-block mt-1">
+          @if (f['username'].errors['required']) { Username is required }
+          @if (f['username'].errors['minlength']) { Username must be at least 3 characters }
+        </div>
+      }
+    </div>
+
+    <!-- Email -->
+    <div class="form-group mb-3">
+      <label for="email" class="form-label">Email Address</label>
+      <div class="input-wrapper">
+        <i class="fas fa-envelope input-icon"></i>
+        <input
+          type="email"
+          id="email"
+          formControlName="email"
+          placeholder="name@example.com"
+          class="form-control auth-input"
+          [class.is-invalid]="submitted() && f['email'].errors"
+        />
+      </div>
+      @if (submitted() && f['email'].errors) {
+        <div class="invalid-feedback d-block mt-1">
+          @if (f['email'].errors['required']) { Email is required }
+          @if (f['email'].errors['email']) { Enter a valid email address }
+        </div>
+      }
+    </div>
+
+    <!-- Password -->
+    <div class="form-group mb-3">
+      <label for="password" class="form-label">Password</label>
+      <div class="input-wrapper">
+        <i class="fas fa-lock input-icon"></i>
+        <input
+          [type]="showPassword() ? 'text' : 'password'"
+          id="password"
+          formControlName="password"
+          placeholder="••••••••"
+          class="form-control auth-input"
+          [class.is-invalid]="submitted() && f['password'].errors"
+        />
+        <button type="button" class="btn-toggle-password" (click)="togglePassword()" tabindex="-1" aria-label="Toggle Password Visibility">
+          <i class="fa-solid" [class.fa-eye]="!showPassword()" [class.fa-eye-slash]="showPassword()"></i>
+        </button>
+      </div>
+      @if (submitted() && f['password'].errors) {
+        <div class="invalid-feedback d-block mt-1">
+          @if (f['password'].errors['required']) { Password is required }
+          @if (f['password'].errors['minlength']) { Password must be at least 6 characters }
+        </div>
+      }
+    </div>
+
+    <!-- Terms Checkbox -->
+    <div class="form-group mb-4 form-check">
+      <input
+        type="checkbox"
+        id="agreeTerms"
+        formControlName="agreeTerms"
+        class="form-check-input"
+        [class.is-invalid]="submitted() && f['agreeTerms'].errors"
+      />
+      <label class="form-check-label" for="agreeTerms">
+        I agree to the Terms of Service & Privacy Policy
+      </label>
+      @if (submitted() && f['agreeTerms'].errors) {
+        <div class="invalid-feedback d-block mt-1">You must agree to the terms to proceed</div>
+      }
+    </div>
+
+    <!-- Submit Button -->
+    <button type="submit" class="btn btn-auth-success w-100">
+      REGISTER NOW
+    </button>
+
+    <!-- Modal Footer Switcher -->
+    <div class="auth-footer mt-4 text-center">
+      <span class="text-secondary">Already have an account?</span>
+      <button type="button" (click)="login()" class="btn-link-action">Log in here</button>
+    </div>
+  </form>
+</div>

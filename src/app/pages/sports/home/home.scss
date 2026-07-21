@@ -1,118 +1,17 @@
 .sports-container {
-  padding: 1.5rem;
+  padding: 1.5rem 0.5rem;
   color: #fff;
-}
-
-/* Hero Section */
-.sports-hero {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: linear-gradient(135deg, #2b251b 0%, #171410 100%);
-  border-radius: 12px;
-  padding: 2.5rem;
-  margin-bottom: 2rem;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  position: relative;
-  overflow: hidden;
-
-  &::before {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: radial-gradient(circle, rgba(254, 155, 16, 0.05) 0%, transparent 70%);
-    pointer-events: none;
-  }
-
-  .hero-content {
-    max-width: 60%;
-    z-index: 1;
-
-    h1 {
-      font-size: 2.5rem;
-      font-weight: 800;
-      margin-bottom: 1rem;
-      background: linear-gradient(90deg, #fff 0%, #ffd08c 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    p {
-      color: #d6c6b1;
-      font-size: 1.1rem;
-      margin-bottom: 1.5rem;
-      line-height: 1.5;
-    }
-
-    .hero-buttons {
-      display: flex;
-      gap: 1rem;
-
-      .btn-primary {
-        background-color: #fe9b10;
-        border-color: #fe9b10;
-        color: #000;
-        font-weight: 700;
-        transition: all 0.2s ease-in-out;
-
-        &:hover {
-          background-color: #e5870b;
-          border-color: #e5870b;
-          transform: translateY(-2px);
-          box-shadow: 0 4px 15px rgba(254, 155, 16, 0.4);
-        }
-      }
-
-      .btn-outline-light {
-        border-color: #2f4553;
-        color: #fff;
-        background: #1a2c38;
-        font-weight: 600;
-
-        &:hover {
-          background: #2f4553;
-          border-color: #b1c6d6;
-          transform: translateY(-2px);
-        }
-      }
-    }
-  }
-
-  .hero-graphic {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 30%;
-    height: 150px;
-
-    .sports-icons {
-      position: relative;
-      display: flex;
-      gap: 1.5rem;
-      align-items: center;
-
-      .animate-spin-slow {
-        animation: spin 8s infinite linear;
-      }
-
-      .animate-bounce {
-        animation: bounce 2s infinite ease-in-out;
-      }
-    }
-  }
 }
 
 /* Category Filter Bar */
 .categories-bar {
   display: flex;
+  flex-wrap: nowrap;
   gap: 0.75rem;
-  margin-bottom: 2.5rem;
+  margin-bottom: 2rem;
   overflow-x: auto;
   padding-bottom: 0.5rem;
+  border-bottom: none;
 
   &::-webkit-scrollbar {
     height: 4px;
@@ -123,15 +22,20 @@
     border-radius: 2px;
   }
 
+  .nav-item {
+    margin-bottom: 0;
+  }
+
+  .nav-link,
   .category-btn {
     display: flex;
     align-items: center;
     gap: 0.5rem;
     background: #1a2c38;
-    border: 1px solid transparent;
-    color: #b1c6d6;
+    border: 1px solid transparent !important;
+    color: #b1c6d6 !important;
     padding: 0.6rem 1.2rem;
-    border-radius: 8px;
+    border-radius: 8px !important;
     font-weight: 600;
     cursor: pointer;
     white-space: nowrap;
@@ -142,15 +46,15 @@
     }
 
     &:hover {
-      color: #fff;
-      background: #2f4553;
+      color: #fff !important;
+      background: #2f4553 !important;
       transform: translateY(-1px);
     }
 
     &.active {
-      background: #2f4553;
-      color: #fff;
-      border-color: rgba(255, 255, 255, 0.1);
+      background: #2f4553 !important;
+      color: #fff !important;
+      border-color: rgba(255, 255, 255, 0.1) !important;
     }
   }
 }
@@ -329,17 +233,37 @@
 
 /* Animations */
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 @keyframes bounce {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
 }
 
 @keyframes pulse {
-  0% { opacity: 0.6; }
-  50% { opacity: 1; }
-  100% { opacity: 0.6; }
+  0% {
+    opacity: 0.6;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0.6;
+  }
 }

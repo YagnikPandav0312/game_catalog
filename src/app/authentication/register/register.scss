@@ -1,0 +1,217 @@
+.auth-modal-container {
+  position: relative;
+  padding: 2.25rem 2rem;
+  background-color: var(--sidebar-bg); /* #1A2C38 */
+  color: var(--text-color);
+  border-radius: 16px;
+
+  .btn-close-modal {
+    position: absolute;
+    top: 1.25rem;
+    right: 1.25rem;
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    font-size: 1.25rem;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    z-index: 10;
+
+    &:hover {
+      background-color: var(--hover-bg);
+      color: #ffffff;
+      transform: rotate(90deg);
+    }
+  }
+
+  .auth-header {
+    text-align: center;
+    margin-bottom: 2rem;
+
+    .auth-brand {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 0.75rem;
+
+      .brand-icon {
+        color: #00e676;
+        margin-right: 0.5rem;
+        font-size: 1.8rem;
+      }
+
+      .brand-name {
+        font-size: 1.2rem;
+        font-weight: 800;
+        letter-spacing: 1.5px;
+        color: #ffffff;
+      }
+    }
+
+    .auth-title {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: #ffffff;
+      margin-bottom: 0.35rem;
+    }
+
+    .auth-subtitle {
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+      margin-bottom: 0;
+    }
+  }
+
+  .auth-form {
+    .form-group {
+      margin-bottom: 1.25rem;
+    }
+
+    .form-label {
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--text-secondary);
+      margin-bottom: 0.4rem;
+    }
+
+    .input-wrapper {
+      position: relative;
+      display: flex;
+      align-items: center;
+
+      .input-icon {
+        position: absolute;
+        left: 14px;
+        color: var(--text-secondary);
+        font-size: 0.95rem;
+        pointer-events: none;
+      }
+
+      .auth-input {
+        background-color: var(--bg-color); /* #0F212E */
+        border: 1px solid var(--hover-bg); /* #2F4553 */
+        color: #ffffff;
+        padding: 0.75rem 2.75rem 0.75rem 2.6rem;
+        font-size: 0.92rem;
+        border-radius: 8px;
+        transition: var(--transition-smooth);
+        width: 100%;
+
+        &::placeholder {
+          color: rgba(177, 186, 211, 0.4);
+        }
+
+        &:focus {
+          background-color: var(--bg-color);
+          border-color: #00e676;
+          box-shadow: 0 0 0 3px rgba(0, 230, 118, 0.2);
+          outline: none;
+        }
+
+        &.is-invalid {
+          border-color: #ff4d4d;
+
+          &:focus {
+            box-shadow: 0 0 0 3px rgba(255, 77, 77, 0.2);
+          }
+        }
+      }
+
+      .btn-toggle-password {
+        position: absolute;
+        right: 12px;
+        background: none;
+        border: none;
+        color: var(--text-secondary);
+        font-size: 0.95rem;
+        cursor: pointer;
+        padding: 4px;
+        display: flex;
+        align-items: center;
+        transition: color 0.2s;
+
+        &:hover {
+          color: #ffffff;
+        }
+      }
+    }
+
+    .invalid-feedback {
+      color: #ff4d4d;
+      font-size: 0.78rem;
+      font-weight: 600;
+    }
+
+    .form-check-input {
+      background-color: var(--bg-color);
+      border-color: var(--hover-bg);
+      cursor: pointer;
+
+      &:checked {
+        background-color: #00e676;
+        border-color: #00e676;
+      }
+
+      &:focus {
+        box-shadow: 0 0 0 3px rgba(0, 230, 118, 0.2);
+      }
+    }
+
+    .form-check-label {
+      font-size: 0.82rem;
+      cursor: pointer;
+      color: var(--text-secondary);
+    }
+
+    .btn-auth-success {
+      background-color: #00e676; /* Stake Green */
+      color: #0f212e;
+      font-weight: 800;
+      font-size: 0.95rem;
+      padding: 0.85rem;
+      border: none;
+      border-radius: 8px;
+      letter-spacing: 0.5px;
+      cursor: pointer;
+      transition: var(--transition-smooth);
+
+      &:hover {
+        background-color: #00c853;
+        box-shadow: 0 4px 15px rgba(0, 230, 118, 0.35);
+        transform: translateY(-1px);
+      }
+
+      &:active {
+        transform: translateY(0);
+      }
+    }
+
+    .auth-footer {
+      font-size: 0.88rem;
+
+      .btn-link-action {
+        background: none;
+        border: none;
+        color: var(--primary-color);
+        font-weight: 700;
+        cursor: pointer;
+        padding: 0;
+        margin-left: 4px;
+        transition: opacity 0.2s;
+
+        &:hover {
+          text-decoration: underline;
+          opacity: 0.9;
+        }
+      }
+    }
+  }
+}
