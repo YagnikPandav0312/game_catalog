@@ -18,6 +18,10 @@ export const routes: Routes = [
             path: '',
             loadComponent: () => import('./pages/casino/home/home').then((m) => m.CasinoHome),
           },
+          {
+            path: ':slug',
+            loadComponent: () => import('./pages/casino/home/home').then((m) => m.CasinoHome),
+          },
         ]
       },
       {

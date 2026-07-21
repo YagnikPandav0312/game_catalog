@@ -133,10 +133,16 @@
   </div>
 
   <ul class="nav-links">
+    <li>
+      <a [routerLink]="['/casino/home']" [routerLinkActiveOptions]="{exact: true}" routerLinkActive="active" class="nav-item">
+        <i class="fas fa-grip text-primary"></i>
+        <span class="label-text">All Games</span>
+      </a>
+    </li>
     @for (item of commonService.categories(); track item.game_categorie_id) {
     <li>
-      <a [routerLink]="['/casino/games', item.game_categorie_name]" routerLinkActive="active" class="nav-item">
-        <i class="fas fa-dollar-sign text-success"></i>
+      <a [routerLink]="['/casino/home', item.slug]" routerLinkActive="active" class="nav-item">
+        <i [class]="getCategoryIcon(item.slug)"></i>
         <span class="label-text">{{item.game_categorie_name}}</span>
       </a>
     </li>

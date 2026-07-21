@@ -45,10 +45,14 @@
   </div>
 
   <div class="casino-subnav">
+    <button class="subnav-btn" (click)="clearFilter()"
+      [class.active]="selectedCategory() === null">
+      <i class="fas fa-grip text-primary"></i> All Games
+    </button>
     @for (item of commonService.categories(); track item.game_categorie_id) {
     <button class="subnav-btn" [class.active]="selectedCategory() === item.game_categorie_id"
       (click)="selectCategory(item)">
-      <i class="fas fa-house-chimney"></i> {{item.game_categorie_name}}
+      <i [class]="getCategoryIcon(item.slug)"></i> {{item.game_categorie_name}}
     </button>
     }
   </div>
@@ -60,7 +64,7 @@
     </div>
 
     <div class="originals-grid">
-      @for (game of commonService.games().slice(0, showLimitGames()); track $index) {
+      @for (game of filteredGames().slice(0, showLimitGames()); track $index) {
       <div class="original-card bg-dice">
         <div class="original-card-body">
           <img [src]="game.thumbnail" [alt]="game.game_name" class="game-image">
@@ -69,6 +73,17 @@
           <span class="game-name">{{game.game_name}}</span>
         </div>
       </div>
+      } @empty {
+        <div class="empty-games-state">
+          <div class="empty-icon-wrapper">
+            <i class="fas fa-gamepad empty-icon"></i>
+          </div>
+          <h3 class="empty-title">No Games Available</h3>
+          <p class="empty-description">There are currently no games found matching this category.</p>
+          <button class="btn-clear-filter" (click)="clearFilter()">
+            <i class="fas fa-arrow-left"></i> View All Games
+          </button>
+        </div>
       }
     </div>
 

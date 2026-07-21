@@ -41,4 +41,14 @@ export class Sidebar {
       this.sidebarMode.set('general');
     }
   }
+
+  getCategoryIcon(slug: string | undefined): string {
+    if (!slug) return 'fas fa-gamepad text-success';
+    const lower = slug.toLowerCase();
+    if (lower.includes('slot')) return 'fas fa-cube text-warning';
+    if (lower.includes('live')) return 'fas fa-video text-danger';
+    if (lower.includes('table') || lower.includes('card') || lower.includes('poker')) return 'fas fa-heart text-danger';
+    if (lower.includes('roulette') || lower.includes('dice')) return 'fas fa-dice text-info';
+    return 'fas fa-gamepad text-success';
+  }
 }
