@@ -5,7 +5,7 @@
         <span class="promo-badge badge-only">Only on Stake</span>
         <h3 class="promo-title">Guardian Riches</h3>
         <p class="promo-subtitle">Treasure Worth Seeking</p>
-        <button class="btn-play" (click)="commonService.playGame()">Play Now!</button>
+        <button class="btn-play">Play Now!</button>
       </div>
       <div class="promo-graphic graphic-golem">
         <i class="fas fa-robot golem-icon text-success"></i>
@@ -17,7 +17,7 @@
         <span class="promo-badge badge-promo">Promotion</span>
         <h3 class="promo-title">2x VIP Progress</h3>
         <p class="promo-subtitle">Boosted VIP on Only on Stake Games</p>
-        <button class="btn-play" (click)="commonService.playGame()">Play Now!</button>
+        <button class="btn-play">Play Now!</button>
       </div>
       <div class="promo-graphic graphic-headphones">
         <i class="fas fa-headphones headphones-icon text-info"></i>
@@ -29,7 +29,7 @@
         <span class="promo-badge badge-promo">Promotion</span>
         <h3 class="promo-title">World KO Poker Series</h3>
         <p class="promo-subtitle">Over $1,000,000 in guarantees!</p>
-        <button class="btn-play" (click)="commonService.playGame()">Play Now</button>
+        <button class="btn-play">Play Now</button>
       </div>
       <div class="promo-graphic graphic-poker">
         <i class="fas fa-coins poker-icon text-warning"></i>
@@ -61,7 +61,7 @@
 
     <div class="originals-grid">
       @for (game of commonService.games().slice(0, showLimitGames()); track $index) {
-      <div class="original-card bg-dice" (click)="commonService.playGame(game)" style="cursor: pointer">
+      <div class="original-card bg-dice">
         <div class="original-card-body">
           <img [src]="game.thumbnail" [alt]="game.game_name" class="game-image">
         </div>

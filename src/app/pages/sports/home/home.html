@@ -163,7 +163,7 @@
 
           <div class="originals-grid">
             @for (game of commonService.sport().slice(0, showLimitGames()); track game.sport_id) {
-            <div class="original-card bg-dice" (click)="commonService.playGame(game)" style="cursor: pointer">
+            <div class="original-card bg-dice">
               <div class="original-card-body">
                 <img [src]="game.logo" [alt]="game.sport_name" class="game-image">
               </div>

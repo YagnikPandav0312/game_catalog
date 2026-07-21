@@ -95,17 +95,4 @@ export class Common {
       }
     })
   }
-
-  playGame(game?: any): void {
-    if (!this.authService.isLoggedIn() || !this.authService.getToken()) {
-      this.toastr.warning('Please log in first to play games.');
-      this.modalService.dismissAll();
-      this.modalService.open(Login, { centered: true, backdrop: 'static' });
-      return;
-    }
-
-    const gameTitle = game?.game_name || game?.sport_name || 'Game';
-    this.toastr.info(`Launching ${gameTitle}... Have fun!`);
-  }
-
 }
