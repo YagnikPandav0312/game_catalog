@@ -7,27 +7,18 @@ export const routes: Routes = [
     loadComponent: () => import('./layout/layout').then((m) => m.Layout),
     children: [
       {
-        path: '',
+        path: 'home',
         loadComponent: () => import('./pages/home/home').then((m) => m.Home),
       },
       {
-        path: 'casino/home',
+        path: 'home/:type',
         canActivate: [authGuard],
-        children: [
-          {
-            path: '',
-            loadComponent: () => import('./pages/casino/home/home').then((m) => m.CasinoHome),
-          },
-          {
-            path: ':slug',
-            loadComponent: () => import('./pages/casino/home/home').then((m) => m.CasinoHome),
-          },
-        ]
+        loadComponent: () => import('./pages/home/home').then((m) => m.Home),
       },
       {
-        path: 'sports/home',
+        path: 'home/:type/:slug',
         canActivate: [authGuard],
-        loadComponent: () => import('./pages/sports/home/home').then((m) => m.SportsHome),
+        loadComponent: () => import('./pages/home/home').then((m) => m.Home),
       },
     ],
   },

@@ -123,14 +123,14 @@ export class CasinoHome {
       this.clearFilter();
     } else {
       this.selectedCategory.set(item.game_categorie_id);
-      this.router.navigate(['/casino/home', item.slug]);
+      this.router.navigate(['/home/casino', item.slug]);
     }
   }
 
   // Clear selected category filter
   clearFilter() {
     this.selectedCategory.set(null);
-    this.router.navigate(['/casino/home']);
+    this.router.navigate(['/home/casino']);
   }
 
   getCategoryIcon(slug: string | undefined): string {

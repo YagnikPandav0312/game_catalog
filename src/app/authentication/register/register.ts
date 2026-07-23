@@ -44,6 +44,7 @@ export class Register {
           this.modalService.dismissAll();
           this.modalService.open(Login, { backdrop: 'static', centered: true });
         } else {
+          console.log(response?.status?.message);
           this.toastService.error(response?.status?.message || 'Registration failed');
         }
       },

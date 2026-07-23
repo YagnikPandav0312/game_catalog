@@ -1,3 +1,8 @@
+@if (type() === 'casino') {
+  <app-casino-home></app-casino-home>
+} @else if (type() === 'sports') {
+  <app-sports-home></app-sports-home>
+} @else {
 <div class="landing-container">
   <!-- Top Hero Banner -->
   <div class="landing-hero">
@@ -25,7 +30,7 @@
     <!-- Choice Cards -->
     <div class="choice-cards-container">
       <!-- Casino Card -->
-      <a routerLink="/casino/home" class="choice-card card-casino">
+      <a routerLink="/home/casino" class="choice-card card-casino">
         <div class="choice-card-bg"></div>
         <div class="choice-card-content">
           <div class="dice-cards-graphic">
@@ -40,7 +45,7 @@
       </a>
 
       <!-- Sports Card -->
-      <a routerLink="/sports/home" class="choice-card card-sports">
+      <a routerLink="/home/sports" class="choice-card card-sports">
         <div class="choice-card-bg"></div>
         <div class="choice-card-content">
           <div class="sports-graphic">
@@ -113,3 +118,4 @@
     }
   </div>
 </div>
+}

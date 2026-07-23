@@ -7,11 +7,11 @@
     </svg>
   </button>
   <div class="link-wrap">
-    <a class="header-button" routerLink="/casino/home" routerLinkActive="active" data-testid="header-casino-link">
+    <a class="header-button" routerLink="/home/casino" routerLinkActive="active" data-testid="header-casino-link">
       <i class="fas fa-dice"></i>
       <span class="label-text">Casino</span>
     </a>
-    <a class="header-button" routerLink="/sports/home" routerLinkActive="active" data-testid="header-sports-link">
+    <a class="header-button" routerLink="/home/sports" routerLinkActive="active" data-testid="header-sports-link">
       <i class="fas fa-soccer-ball"></i>
       <span class="label-text">Sports</span>
     </a>
@@ -134,14 +134,14 @@
 
   <ul class="nav-links">
     <li>
-      <a [routerLink]="['/casino/home']" [routerLinkActiveOptions]="{exact: true}" routerLinkActive="active" class="nav-item">
+      <a [routerLink]="['/home/casino']" [routerLinkActiveOptions]="{exact: true}" routerLinkActive="active" class="nav-item">
         <i class="fas fa-grip text-primary"></i>
         <span class="label-text">All Games</span>
       </a>
     </li>
     @for (item of commonService.categories(); track item.game_categorie_id) {
     <li>
-      <a [routerLink]="['/casino/home', item.slug]" routerLinkActive="active" class="nav-item">
+      <a [routerLink]="['/home/casino', item.slug]" routerLinkActive="active" class="nav-item">
         <i [class]="getCategoryIcon(item.slug)"></i>
         <span class="label-text">{{item.game_categorie_name}}</span>
       </a>
