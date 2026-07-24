@@ -68,10 +68,13 @@ export class AuthService {
     const token = localStorage.getItem('token');
     if (!token) {
       this.clearLocalSession();
-      return of({ status: { code: 0, message: 'Logged out locally' } });
+      return of({ status: { code: 0, message: 'Logged out Successfully !' } });
     }
 
-    return this.http.post<any>(`${this.baseUrl}${API.player_api.logout}`, {}).pipe(
+    const user = this.currentUser();
+    const playerId = user ? user.id : null;
+
+    return this.http.post<any>(`${this.baseUrl}${API.player_api.logout}`, { player_id: playerId }).pipe(
       finalize(() => {
         this.clearLocalSession();
       })

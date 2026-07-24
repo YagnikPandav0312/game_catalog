@@ -19,7 +19,7 @@ export class Login {
   private readonly toastService = inject(ToastrService);
   private readonly modalService = inject(NgbModal);
   public readonly showPassword = signal<boolean>(false);
-
+  public router = inject(Router);
   readonly loginForm: FormGroup = this.fb.group({
     email: ['', [Validators.required, Validators.email]],
     password: ['', [Validators.required, Validators.minLength(6)]]
@@ -37,9 +37,10 @@ export class Login {
     const { email, password } = this.loginForm.value;
     this.authService.login(email, password).subscribe({
       next: (response) => {
-        if (response && response.status && response.status.code === 0) {
-          this.toastService.success('Logged in successfully!');
+        if (response && response.status.code === 0) {
+          this.toastService.success(response.status.message);
           this.modalService.dismissAll();
+          this.router.navigate(['/home/casino']);
         } else {
           this.toastService.error(response?.status?.message || 'Invalid Credentials');
         }

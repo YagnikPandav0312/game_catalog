@@ -1,5 +1,5 @@
 import { Component, inject, output } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Login } from '../../authentication/login/login';
 import { Register } from '../../authentication/register/register';
@@ -19,6 +19,7 @@ export class Header {
   public authService = inject(AuthService);
   private toastr = inject(ToastrService);
   public modelService = inject(NgbModal);
+  public router = inject(Router);
 
   onToggleSidebar() {
     this.toggleSidebar.emit();
@@ -53,6 +54,7 @@ export class Header {
         this.authService.logout().subscribe({
           next: (data) => {
             localStorage.clear();
+            this.router.navigate(['']);
             this.toastr.success(data.status.message);
           },
           error: (err) => {
