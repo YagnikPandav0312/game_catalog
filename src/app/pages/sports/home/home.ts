@@ -17,6 +17,10 @@ export class SportsHome {
   public showLimit = signal<number>(8);
   public showLimitGames = signal<number>(8);
 
+  constructor() {
+    this.commonService.getSport();
+  }
+
   loadMoreGames() {
     this.showLimitGames.update(limit => limit + 8);
   }

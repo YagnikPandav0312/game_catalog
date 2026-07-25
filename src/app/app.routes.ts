@@ -11,15 +11,21 @@ export const routes: Routes = [
         loadComponent: () => import('./pages/home/home').then((m) => m.Home),
       },
       {
-        path: 'home/:type',
+        path: 'casino',
         canActivate: [authGuard],
-        loadComponent: () => import('./pages/home/home').then((m) => m.Home),
+        loadComponent: () => import('./pages/casino/home/home').then((m) => m.CasinoHome),
       },
       {
-        path: 'home/:type/:slug',
+        path: 'casino/:slug',
         canActivate: [authGuard],
-        loadComponent: () => import('./pages/home/home').then((m) => m.Home),
+        loadComponent: () => import('./pages/casino/home/home').then((m) => m.CasinoHome),
+      },
+      {
+        path: 'sports',
+        canActivate: [authGuard],
+        loadComponent: () => import('./pages/sports/home/home').then((m) => m.SportsHome),
       },
     ],
+    
   },
 ];

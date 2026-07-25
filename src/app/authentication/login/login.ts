@@ -40,7 +40,7 @@ export class Login {
         if (response && response.status.code === 0) {
           this.toastService.success(response.status.message);
           this.modalService.dismissAll();
-          this.router.navigate(['/home/casino']);
+          this.router.navigate(['/casino']);
         } else {
           this.toastService.error(response?.status?.message || 'Invalid Credentials');
         }

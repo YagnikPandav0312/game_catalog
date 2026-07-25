@@ -60,6 +60,7 @@ export class CasinoHome {
   });
 
   constructor() {
+    this.commonService.getCasino();
     this.route.paramMap.subscribe(params => {
       const slug = params.get('slug');
       this.slug.set(slug);
@@ -123,14 +124,14 @@ export class CasinoHome {
       this.clearFilter();
     } else {
       this.selectedCategory.set(item.game_categorie_id);
-      this.router.navigate(['/home/casino', item.slug]);
+      this.router.navigate(['/casino', item.slug]);
     }
   }
 
   // Clear selected category filter
   clearFilter() {
     this.selectedCategory.set(null);
-    this.router.navigate(['/home/casino']);
+    this.router.navigate(['/casino']);
   }
 
   getCategoryIcon(slug: string | undefined): string {

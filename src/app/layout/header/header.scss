@@ -31,10 +31,6 @@
       color: var(--text-color);
       background-color: var(--hover-bg);
     }
-
-    @media (max-width: 768px) {
-      display: none !important;
-    }
   }
 
   // .header-switcher {
@@ -136,6 +132,14 @@
         font-size: 0.88rem;
         font-weight: 700;
         color: #ffffff;
+
+        @media (max-width: 576px) {
+          display: none;
+        }
+      }
+
+      @media (max-width: 576px) {
+        padding: 0.45rem;
       }
     }
 
@@ -163,6 +167,16 @@
       &:active {
         transform: translateY(0);
       }
+
+      span {
+        @media (max-width: 576px) {
+          display: none;
+        }
+      }
+
+      @media (max-width: 576px) {
+        padding: 0.45rem;
+      }
     }
   }
 
@@ -186,6 +200,11 @@
     &:active {
       transform: translateY(0);
     }
+
+    @media (max-width: 576px) {
+      padding: 0.5rem 1rem;
+      font-size: 0.85rem;
+    }
   }
 
   .btn-register {
@@ -207,6 +226,11 @@
 
     &:active {
       transform: translateY(0);
+    }
+
+    @media (max-width: 576px) {
+      padding: 0.5rem 1rem;
+      font-size: 0.85rem;
     }
   }
 }

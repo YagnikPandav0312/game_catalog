@@ -139,6 +139,7 @@ app-footer {
 @media (max-width: 768px) {
   .mobile-sidebar-backdrop {
     display: block;
+    top: 0;
   }
 
   app-sidebar {
@@ -146,6 +147,7 @@ app-footer {
     width: 240px;
     bottom: 60px; /* offset bottom nav */
     border-right: 2px solid var(--sidebar-bg);
+    z-index: 999;
 
     &.mobile-open {
       transform: translateX(0) !important;

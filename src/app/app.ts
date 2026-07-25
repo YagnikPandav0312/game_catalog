@@ -13,11 +13,5 @@ import { Common } from './core/services/common';
 export class App {
 
   protected readonly title = signal('game_catalog');
-  public commonService = inject(Common);
-
-  constructor() {
-    this.commonService.getSport();
-    this.commonService.getCasino();
-  }
 
 }
