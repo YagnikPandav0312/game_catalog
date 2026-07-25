@@ -16,6 +16,8 @@ export class Home {
   public commonService = inject(Common);
 
   constructor() {
+    this.commonService.getCasino();
+    this.commonService.getSport();
   }
 
   loadMoreSport() {
