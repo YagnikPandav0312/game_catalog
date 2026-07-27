@@ -1,6 +1,7 @@
 import { Component, inject, Input } from '@angular/core';
 import { Common } from '../../../core/services/common';
 import { AuthService } from '../../../core/services/auth';
+import { Api } from '../../../core/services/api';
 
 @Component({
   selector: 'app-game-card',
@@ -14,6 +15,7 @@ export class GameCard {
   @Input() type: 'casino' | 'sport' = 'casino';
 
   public commonService = inject(Common);
+  public apiService = inject(Api);
   public authService = inject(AuthService);
 
   getGameThumbnail(): string {
@@ -38,7 +40,7 @@ export class GameCard {
     }
     if (this.type === 'casino') {
       this.commonService.showSpinner();
-      this.commonService.saveHistory(player).subscribe({
+      this.apiService.saveHistory(player).subscribe({
         next: (res: any) => {
           this.commonService.RecentGames();
           this.commonService.hideSpinner();

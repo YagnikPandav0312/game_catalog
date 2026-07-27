@@ -1,14 +1,9 @@
-import { inject, Injectable, signal, effect, computed } from '@angular/core';
+import { effect, inject, Injectable, signal } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { Status } from '../models/api.model';
-import { HttpClient } from '@angular/common/http';
-import { environment } from '../../../environments/environment';
-import { Observable } from 'rxjs';
-import { API } from '../constants/api-endpoints';
+import { Api } from './api';
 import { AuthService } from './auth';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { Login } from '../../authentication/login/login';
 
 @Injectable({
   providedIn: 'root',
@@ -16,12 +11,10 @@ import { Login } from '../../authentication/login/login';
 
 export class Common {
 
-  private http = inject(HttpClient);
-  private baseUrl = environment.apiUrl;
   public spinnerService = inject(NgxSpinnerService);
   private toastr = inject(ToastrService);
   private authService = inject(AuthService);
-  private modalService = inject(NgbModal);
+  private apiService = inject(Api);
 
   public sport = signal<any[]>([]);
   public games = signal<any[]>([]);
@@ -64,29 +57,14 @@ export class Common {
     }
   }
 
-  getCasinoHome(): Observable<any> {
-    return this.http.get<any>(`${this.baseUrl}${API.home_api.get_casino_home}`);
-  }
-
-  getSportHome(): Observable<any> {
-    return this.http.get<any>(`${this.baseUrl}${API.home_api.get_sport_home}`);
-  }
-
-  saveHistory(data: any): Observable<any> {
-    return this.http.post<any>(`${this.baseUrl}${API.recent_games.save_history}`, data);
-  }
-
-  getRecentGames(data: any): Observable<any> {
-    return this.http.post<any>(`${this.baseUrl}${API.recent_games.get_recent_games}`, data);
-  }
 
 
   getSport() {
     this.showSpinner();
-    this.getSportHome().subscribe({
+    this.apiService.getSport().subscribe({
       next: (res: any) => {
         if (res && res.status.code === 0) {
-          this.sport.set(res.data.sports);
+          this.sport.set(res.data);
           this.hideSpinner();
         } else {
           this.manageStatus(res.status);
@@ -99,22 +77,55 @@ export class Common {
     })
   }
 
-  getCasino() {
+  getGames() {
     this.showSpinner();
-    this.getCasinoHome().subscribe({
+    this.apiService.getGames().subscribe({
       next: (res: any) => {
         if (res && res.status.code === 0) {
-          this.games.set(res.data.games);
-          this.providers.set(res.data.providers);
-          this.categories.set(res.data.categories)
+          this.games.set(res.data);
           this.hideSpinner();
         } else {
           this.manageStatus(res.status);
           this.hideSpinner();
         }
       }, error: (err: any) => {
-        this.manageStatus(err.status);
         this.hideSpinner();
+        this.manageStatus(err.error.status);
+      }
+    })
+  }
+
+  getProviders() {
+    this.showSpinner();
+    this.apiService.getProviders().subscribe({
+      next: (res: any) => {
+        if (res && res.status.code === 0) {
+          this.providers.set(res.data);
+          this.hideSpinner();
+        } else {
+          this.manageStatus(res.status);
+          this.hideSpinner();
+        }
+      }, error: (err: any) => {
+        this.hideSpinner();
+        this.manageStatus(err.error.status);
+      }
+    })
+  }
+
+  getCategories() {
+    this.showSpinner();
+    this.apiService.getcategories().subscribe({
+      next: (res: any) => {
+        if (res && res.status.code === 0) {
+          this.categories.set(res.data);
+          this.hideSpinner();
+        } else {
+          this.manageStatus(res.status);
+        }
+      }, error: (err: any) => {
+        this.hideSpinner();
+        this.manageStatus(err.error.status);
       }
     })
   }
@@ -125,7 +136,7 @@ export class Common {
       player_id: user?.id
     }
     this.showSpinner();
-    this.getRecentGames(player).subscribe({
+    this.apiService.getRecentGames(player).subscribe({
       next: (res: any) => {
         if (res && res.status.code === 0 && Array.isArray(res.data)) {
           const resolved = res.data.map((item: any) => {

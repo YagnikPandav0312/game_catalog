@@ -1,7 +1,6 @@
 export const API = {
-    home_api: {
-        get_casino_home: '/casino/get_casino_home',
-        get_sport_home: '/sport/get_sport_home'
+    sport_api: {
+        get_sport: '/sport/get_sport'
     },
     player_api: {
         register: '/player/register',
@@ -12,5 +11,14 @@ export const API = {
     recent_games: {
         save_history: '/recent-game/save_history',
         get_recent_games: '/recent-game/recent_games'
-    }
+    },
+    games_api: {
+        get_games: '/games/get_games'
+    },
+    providers_api: {
+        get_providers: '/providers/get_providers'
+    },
+    categories_api: {
+        get_categories: '/categories/get_categories'
+    },
 }

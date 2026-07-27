@@ -64,7 +64,9 @@ export class CasinoHome {
   });
 
   constructor() {
-    this.commonService.getCasino();
+    this.commonService.getGames();
+    this.commonService.getProviders();
+    this.commonService.getCategories();
     this.route.paramMap.subscribe(params => {
       const slug = params.get('slug');
       this.slug.set(slug);

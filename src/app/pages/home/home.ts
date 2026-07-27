@@ -19,7 +19,7 @@ export class Home {
   public authService = inject(AuthService);
 
   constructor() {
-    this.commonService.getCasino();
+    this.commonService.getGames();
     this.commonService.getSport();
   }
 
