@@ -2,16 +2,20 @@ import { Component, computed, effect, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Common } from '../../../core/services/common';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
+import { AuthService } from '../../../core/services/auth';
+import { Login } from '../../../authentication/login/login';
+import { GameCard } from '../../../shared/components/game-card/game-card';
 
 @Component({
   selector: 'app-casino-home',
-  imports: [CommonModule],
+  imports: [CommonModule, GameCard],
   templateUrl: './home.html',
   styleUrl: './home.scss',
 })
 
 export class CasinoHome {
 
+  public authService = inject(AuthService);
   public commonService = inject(Common);
   public showLimit = signal<number>(8);
   public showLimitGames = signal<number>(8);

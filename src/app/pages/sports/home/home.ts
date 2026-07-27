@@ -2,10 +2,11 @@ import { Component, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NgbNavModule } from '@ng-bootstrap/ng-bootstrap';
 import { Common } from '../../../core/services/common';
+import { GameCard } from '../../../shared/components/game-card/game-card';
 
 @Component({
   selector: 'app-sports-home',
-  imports: [CommonModule, NgbNavModule],
+  imports: [CommonModule, NgbNavModule, GameCard],
   templateUrl: './home.html',
   styleUrl: './home.scss',
 })

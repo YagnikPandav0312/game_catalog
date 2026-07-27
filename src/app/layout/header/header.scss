@@ -80,6 +80,11 @@
   text-decoration: none;
   display: flex;
   align-items: center;
+  transition: margin-left 0.3s ease;
+
+  &.sidebar-open {
+    margin-left: 118%;
+  }
 
   .logo-text {
     font-size: 1.7rem;

@@ -1,4 +1,4 @@
-import { Component, inject, output } from '@angular/core';
+import { Component, inject, output, Input } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Login } from '../../authentication/login/login';
@@ -14,6 +14,7 @@ import { Confirm } from '../../shared/components/confirm/confirm';
   styleUrl: './header.scss',
 })
 export class Header {
+  @Input() sidebarOpen: boolean = false;
   public toggleSidebar = output<void>();
   public modalService = inject(NgbModal);
   public authService = inject(AuthService);

@@ -1,1 +1,8 @@
-<p>game-card works!</p>
+<div class="original-card bg-dice">
+  <div class="original-card-body" (click)="playGame()">
+    <img [src]="getGameThumbnail()" [alt]="getGameName()" class="game-image">
+  </div>
+  <div class="original-card-footer">
+    <span class="game-name">{{ getGameName() }}</span>
+  </div>
+</div>

@@ -8,5 +8,9 @@ export const API = {
         login: '/player/login',
         profile: '/player/me',
         logout: '/player/logout'
+    },
+    recent_games: {
+        save_history: '/recent-game/save_history',
+        get_recent_games: '/recent-game/recent_games'
     }
 }

@@ -1,4 +1,4 @@
-import { inject, Injectable, signal } from '@angular/core';
+import { inject, Injectable, signal, effect, computed } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { Status } from '../models/api.model';
@@ -27,6 +27,20 @@ export class Common {
   public games = signal<any[]>([]);
   public providers = signal<any[]>([]);
   public categories = signal<any[]>([]);
+  public recentGames = signal<any[]>([]);
+
+  constructor() {
+    effect(() => {
+      if (this.authService.isLoggedIn()) {
+        const allGames = this.games();
+        if (allGames && allGames.length > 0) {
+          this.RecentGames();
+        }
+      } else {
+        this.recentGames.set([]);
+      }
+    });
+  }
 
   showSpinner(): void {
     this.spinnerService.show();
@@ -57,6 +71,15 @@ export class Common {
   getSportHome(): Observable<any> {
     return this.http.get<any>(`${this.baseUrl}${API.home_api.get_sport_home}`);
   }
+
+  saveHistory(data: any): Observable<any> {
+    return this.http.post<any>(`${this.baseUrl}${API.recent_games.save_history}`, data);
+  }
+
+  getRecentGames(data: any): Observable<any> {
+    return this.http.post<any>(`${this.baseUrl}${API.recent_games.get_recent_games}`, data);
+  }
+
 
   getSport() {
     this.showSpinner();
@@ -92,6 +115,28 @@ export class Common {
       }, error: (err: any) => {
         this.manageStatus(err.status);
         this.hideSpinner();
+      }
+    })
+  }
+
+  RecentGames() {
+    const user = this.authService.currentUser();
+    const player = {
+      player_id: user?.id
+    }
+    this.showSpinner();
+    this.getRecentGames(player).subscribe({
+      next: (res: any) => {
+        if (res && res.status.code === 0 && Array.isArray(res.data)) {
+          const resolved = res.data.map((item: any) => {
+            return this.games().find((g: any) => g.game_id === item.game_id);
+          }).filter((g: any) => g !== undefined);
+          this.recentGames.set(resolved);
+        }
+        this.hideSpinner();
+      }, error: (err: any) => {
+        this.hideSpinner();
+        this.manageStatus(err.error.status);
       }
     })
   }
