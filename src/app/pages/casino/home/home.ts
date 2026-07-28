@@ -22,11 +22,11 @@ export class CasinoHome {
   public selectedCategory = signal<number | null>(null);
   public route = inject(ActivatedRoute);
   public router = inject(Router);
-  public slug = signal<string | null>(null);
+  public slg = signal<string | null>(null);
 
-  // Computed signal to reactively filter games whenever slug, categories, or games change
+  // Computed signal to reactively filter games whenever slg, categories, or games change
   public filteredGames = computed(() => {
-    const currentSlug = this.slug();
+    const currentSlug = this.slg();
     const allGames = this.commonService.games() || [];
     const allCategories = this.commonService.categories() || [];
 
@@ -34,17 +34,17 @@ export class CasinoHome {
       return allGames;
     }
 
-    // Filter category by slug
+    // Filter category by slg
     const filteredCategories = allCategories.filter(
-      category => category.slug === currentSlug
+      category => category.slg === currentSlug
     );
 
-    // Flatten all game_type_ids into a single array
+    // Flatten all gtids into a single array
     const gameIds = filteredCategories.flatMap(category => {
-      if (Array.isArray(category.game_type_id)) {
-        return category.game_type_id.map((id: any) => Number(id));
-      } else if (category.game_type_id != null) {
-        return [Number(category.game_type_id)];
+      if (Array.isArray(category.gtid)) {
+        return category.gtid.map((id: any) => Number(id));
+      } else if (category.gtid != null) {
+        return [Number(category.gtid)];
       }
       return [];
     });
@@ -53,13 +53,13 @@ export class CasinoHome {
       return [];
     }
 
-    // Filter games that have at least one matching game_type_id
+    // Filter games that have at least one matching gtid
     return allGames.filter(game => {
-      if (!game.game_type_id) return false;
-      if (Array.isArray(game.game_type_id)) {
-        return game.game_type_id.some((id: any) => gameIds.includes(Number(id)));
+      if (!game.gtid) return false;
+      if (Array.isArray(game.gtid)) {
+        return game.gtid.some((id: any) => gameIds.includes(Number(id)));
       }
-      return gameIds.includes(Number(game.game_type_id));
+      return gameIds.includes(Number(game.gtid));
     });
   });
 
@@ -68,18 +68,18 @@ export class CasinoHome {
     this.commonService.getProviders();
     this.commonService.getCategories();
     this.route.paramMap.subscribe(params => {
-      const slug = params.get('slug');
-      this.slug.set(slug);
+      const slg = params.get('slg');
+      this.slg.set(slg);
     });
 
-    // Sync selectedCategory based on current slug when categories load
+    // Sync selectedCategory based on current slg when categories load
     effect(() => {
-      const currentSlug = this.slug();
+      const currentSlug = this.slg();
       const categories = this.commonService.categories();
       if (currentSlug && categories.length > 0) {
-        const match = categories.find(c => c.slug === currentSlug);
+        const match = categories.find(c => c.slg === currentSlug);
         if (match) {
-          this.selectedCategory.set(match.game_categorie_id);
+          this.selectedCategory.set(match.cid);
         }
       } else if (!currentSlug) {
         this.selectedCategory.set(null);
@@ -108,29 +108,29 @@ export class CasinoHome {
   }
 
   // Get realistic player count based on provider ID
-  getPlayingCount(providerId: number): string {
-    if (providerId === 21) return '4,085'; // Pragmatic Play
-    if (providerId === 22) return '1,889'; // Evolution Gaming
-    if (providerId === 23) return '2,402'; // NetEnt
-    if (providerId === 24) return '1,120'; // Microgaming
-    if (providerId === 26) return '723';   // Yggdrasil
-    if (providerId === 27) return '895';   // Red Tiger
-    if (providerId === 28) return '406';   // Quickspin
-    if (providerId === 29) return '1,284'; // Betsoft
-    if (providerId === 16) return '317';   // ezuki
+  getPlayingCount(pid: number): string {
+    if (pid === 21) return '4,085'; // Pragmatic Play
+    if (pid === 22) return '1,889'; // Evolution Gaming
+    if (pid === 23) return '2,402'; // NetEnt
+    if (pid === 24) return '1,120'; // Microgaming
+    if (pid === 26) return '723';   // Yggdrasil
+    if (pid === 27) return '895';   // Red Tiger
+    if (pid === 28) return '406';   // Quickspin
+    if (pid === 29) return '1,284'; // Betsoft
+    if (pid === 16) return '317';   // ezuki
 
     // Fallback deterministic count
-    const seed = (providerId * 157) % 3000 + 100;
+    const seed = (pid * 157) % 3000 + 100;
     return seed.toLocaleString();
   }
 
   // Set selected category ID
   selectCategory(item: any) {
-    if (this.selectedCategory() === item.game_categorie_id) {
+    if (this.selectedCategory() === item.cid) {
       this.clearFilter();
     } else {
-      this.selectedCategory.set(item.game_categorie_id);
-      this.router.navigate(['/casino', item.slug]);
+      this.selectedCategory.set(item.cid);
+      this.router.navigate(['/casino', item.slg]);
     }
   }
 
@@ -140,9 +140,9 @@ export class CasinoHome {
     this.router.navigate(['/casino']);
   }
 
-  getCategoryIcon(slug: string | undefined): string {
-    if (!slug) return 'fas fa-gamepad text-success';
-    const lower = slug.toLowerCase();
+  getCategoryIcon(slg: string | undefined): string {
+    if (!slg) return 'fas fa-gamepad text-success';
+    const lower = slg.toLowerCase();
     if (lower.includes('slot')) return 'fas fa-cube text-warning';
     if (lower.includes('live')) return 'fas fa-video text-danger';
     if (lower.includes('table') || lower.includes('card') || lower.includes('poker')) return 'fas fa-heart text-danger';

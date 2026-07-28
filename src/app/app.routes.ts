@@ -16,7 +16,7 @@ export const routes: Routes = [
         loadComponent: () => import('./pages/casino/home/home').then((m) => m.CasinoHome),
       },
       {
-        path: 'casino/:slug',
+        path: 'casino/:slg',
         canActivate: [authGuard],
         loadComponent: () => import('./pages/casino/home/home').then((m) => m.CasinoHome),
       },

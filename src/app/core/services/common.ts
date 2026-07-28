@@ -140,7 +140,7 @@ export class Common {
       next: (res: any) => {
         if (res && res.status.code === 0 && Array.isArray(res.data)) {
           const resolved = res.data.map((item: any) => {
-            return this.games().find((g: any) => g.game_id === item.game_id);
+            return this.games().find((g: any) => g.gid === item.gid);
           }).filter((g: any) => g !== undefined);
           this.recentGames.set(resolved);
         }

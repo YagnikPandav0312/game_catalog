@@ -62,7 +62,7 @@
       <h2><i class="fas fa-clock text-warning"></i> Recently Played</h2>
     </div>
     <div class="originals-grid">
-      @for (game of commonService.recentGames(); track game.game_id) {
+      @for (game of commonService.recentGames(); track game.gid) {
       <app-game-card [game]="game" [type]="'casino'"></app-game-card>
       }
     </div>

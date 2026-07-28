@@ -42,9 +42,9 @@ export class Sidebar {
     }
   }
 
-  getCategoryIcon(slug: string | undefined): string {
-    if (!slug) return 'fas fa-gamepad text-success';
-    const lower = slug.toLowerCase();
+  getCategoryIcon(slg: string | undefined): string {
+    if (!slg) return 'fas fa-gamepad text-success';
+    const lower = slg.toLowerCase();
     if (lower.includes('slot')) return 'fas fa-cube text-warning';
     if (lower.includes('live')) return 'fas fa-video text-danger';
     if (lower.includes('table') || lower.includes('card') || lower.includes('poker')) return 'fas fa-heart text-danger';

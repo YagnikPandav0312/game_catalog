@@ -50,7 +50,7 @@
       <h2><i class="fas fa-clock text-warning"></i> Recently Played</h2>
     </div>
     <div class="originals-grid">
-      @for (game of commonService.recentGames(); track game.game_id) {
+      @for (game of commonService.recentGames(); track game.gid) {
       <app-game-card [game]="game" [type]="'casino'"></app-game-card>
       }
     </div>
@@ -61,10 +61,10 @@
     <button class="subnav-btn" (click)="clearFilter()" [class.active]="selectedCategory() === null">
       <i class="fas fa-grip text-primary"></i> All Games
     </button>
-    @for (item of commonService.categories(); track item.game_categorie_id) {
-    <button class="subnav-btn" [class.active]="selectedCategory() === item.game_categorie_id"
+    @for (item of commonService.categories(); track item.cid) {
+    <button class="subnav-btn" [class.active]="selectedCategory() === item.cid"
       (click)="selectCategory(item)">
-      <i [class]="getCategoryIcon(item.slug)"></i> {{item.game_categorie_name}}
+      <i [class]="getCategoryIcon(item.slg)"></i> {{item.cn}}
     </button>
     }
   </div>
@@ -105,15 +105,15 @@
       <a href="#" class="view-all">View All</a>
     </div>
     <div class="publishers-grid">
-      @for (provider of commonService.providers().slice(0, showLimit()); track provider.provider_id) {
+      @for (provider of commonService.providers().slice(0, showLimit()); track provider.pid) {
       <div class="publisher-item">
         <div class="publisher-card">
-          <img [src]="provider.logo" [alt]="provider.provider_name" class="provider-logo">
+          <img [src]="provider.img" [alt]="provider.pn" class="provider-logo">
         </div>
         <div class="publisher-status">
           <span class="status-dot"></span>
           <span class="status-text">
-            <span class="playing-count">{{ getPlayingCount(provider.provider_id) }}</span>
+            <span class="playing-count">{{ getPlayingCount(provider.pid) }}</span>
             playing
           </span>
         </div>

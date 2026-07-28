@@ -139,11 +139,11 @@
         <span class="label-text">All Games</span>
       </a>
     </li>
-    @for (item of commonService.categories(); track item.game_categorie_id) {
+    @for (item of commonService.categories(); track item.cid) {
     <li>
-      <a [routerLink]="['/casino', item.slug]" routerLinkActive="active" class="nav-item">
-        <i [class]="getCategoryIcon(item.slug)"></i>
-        <span class="label-text">{{item.game_categorie_name}}</span>
+      <a [routerLink]="['/casino', item.slg]" routerLinkActive="active" class="nav-item">
+        <i [class]="getCategoryIcon(item.slg)"></i>
+        <span class="label-text">{{item.cn}}</span>
       </a>
     </li>
     }
@@ -184,11 +184,11 @@
   </div>
 
   <ul class="nav-links">
-    @for (item of commonService.sport(); track item.sport_id) {
+    @for (item of commonService.sport(); track item.sid) {
     <li>
       <a routerLinkActive="active" class="nav-item">
         <i class="fas fa-soccer-ball"></i>
-        <span class="label-text">{{item.sport_name}}</span>
+        <span class="label-text">{{item.sn}}</span>
       </a>
     </li>
     }

@@ -20,22 +20,22 @@ export class GameCard {
 
   getGameThumbnail(): string {
     if (this.type === 'casino') {
-      return this.game?.thumbnail || '';
+      return this.game?.img || '';
     }
-    return this.game?.logo || '';
+    return this.game?.img || '';
   }
 
   getGameName(): string {
     if (this.type === 'casino') {
-      return this.game?.game_name || '';
+      return this.game?.gn || '';
     }
-    return this.game?.sport_name || '';
+    return this.game?.sn || '';
   }
 
   playGame() {
     const user = this.authService.currentUser();
     const player = {
-      game_id: this.game?.game_id,
+      game_id: this.game?.gid,
       player_id: user?.id
     }
     if (this.type === 'casino') {

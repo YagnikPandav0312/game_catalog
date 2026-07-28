@@ -162,7 +162,7 @@
           </div>
 
           <div class="originals-grid">
-            @for (game of commonService.sport().slice(0, showLimitGames()); track game.sport_id) {
+            @for (game of commonService.sport().slice(0, showLimitGames()); track game.sid) {
             <app-game-card [game]="game" [type]="'sport'"></app-game-card>
             }
           </div>
