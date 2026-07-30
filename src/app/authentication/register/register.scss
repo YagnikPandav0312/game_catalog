@@ -87,12 +87,87 @@
       display: flex;
       align-items: center;
 
+      &.custom-dropdown-wrapper {
+
+        .select-input {
+          cursor: pointer;
+          user-select: none;
+          
+          .placeholder-text {
+            color: rgba(177, 186, 211, 0.4);
+          }
+          
+          .flag-icon {
+            width: 20px;
+            height: 15px;
+            object-fit: cover;
+            border-radius: 2px;
+          }
+
+          .dropdown-chevron {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            transition: transform var(--transition-smooth);
+            
+            &.rotated {
+              transform: rotate(180deg);
+            }
+          }
+        }
+
+        .dropdown-options-list {
+          position: absolute;
+          top: 100%;
+          left: 0;
+          width: 100%;
+          max-height: 200px;
+          overflow-y: auto;
+          background-color: var(--bg-color);
+          border: 1px solid var(--hover-bg);
+          border-radius: 8px;
+          margin-top: 4px;
+          z-index: 1000;
+          box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+
+          /* Scrollbar Styling */
+          &::-webkit-scrollbar {
+            width: 6px;
+          }
+          &::-webkit-scrollbar-track {
+            background: transparent;
+          }
+          &::-webkit-scrollbar-thumb {
+            background: var(--hover-bg);
+            border-radius: 3px;
+          }
+        }
+
+        .dropdown-option-item {
+          padding: 0.75rem 1.25rem 0.75rem 2.6rem;
+          cursor: pointer;
+          transition: var(--transition-smooth);
+          color: #ffffff;
+          
+          .flag-icon {
+            width: 20px;
+            height: 15px;
+            object-fit: cover;
+            border-radius: 2px;
+          }
+
+          &:hover {
+            background-color: var(--hover-bg);
+          }
+        }
+      }
+
       .input-icon {
         position: absolute;
         left: 14px;
         color: var(--text-secondary);
         font-size: 0.95rem;
         pointer-events: none;
+        z-index: 2; /* Ensure it stays on top of the custom select */
       }
 
       .auth-input {
@@ -122,6 +197,29 @@
           &:focus {
             box-shadow: 0 0 0 3px rgba(255, 77, 77, 0.2);
           }
+        }
+      }
+
+      select.auth-input {
+        appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23b1bad3' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+        background-repeat: no-repeat;
+        background-position: right 14px center;
+        background-size: 16px;
+        padding-right: 2.5rem;
+        cursor: pointer;
+
+        option {
+          background-color: var(--bg-color); /* #0F212E */
+          color: #ffffff;
+          padding: 10px;
+          font-size: 0.92rem;
+        }
+
+        &::-ms-expand {
+          display: none;
         }
       }
 

@@ -56,13 +56,19 @@ export class AuthService {
     );
   }
 
-  register(username: string, email: string, password: string): Observable<any> {
+  register(username: string, email: string, password: string, countryId: number): Observable<any> {
     return this.http.post<any>(`${this.baseUrl}${API.player_api.register}`, {
       full_name: username,
       email,
-      password
+      password,
+      country_id: countryId
     });
   }
+
+  getCountries(): Observable<any> {
+    return this.http.get<any>(`${this.baseUrl}${API.country_api.get_country_ddl}`);
+  }
+
 
   logout(): Observable<any> {
     const token = localStorage.getItem('token');

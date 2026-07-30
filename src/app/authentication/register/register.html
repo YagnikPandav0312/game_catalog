@@ -21,20 +21,14 @@
       <label for="username" class="form-label">Username</label>
       <div class="input-wrapper">
         <i class="fas fa-user input-icon"></i>
-        <input
-          type="text"
-          id="username"
-          formControlName="username"
-          placeholder="Choose username"
-          class="form-control auth-input"
-          [class.is-invalid]="submitted() && f['username'].errors"
-        />
+        <input type="text" id="username" formControlName="username" placeholder="Choose username"
+          class="form-control auth-input" [class.is-invalid]="submitted() && f['username'].errors" />
       </div>
       @if (submitted() && f['username'].errors) {
-        <div class="invalid-feedback d-block mt-1">
-          @if (f['username'].errors['required']) { Username is required }
-          @if (f['username'].errors['minlength']) { Username must be at least 3 characters }
-        </div>
+      <div class="invalid-feedback d-block mt-1">
+        @if (f['username'].errors['required']) { Username is required }
+        @if (f['username'].errors['minlength']) { Username must be at least 3 characters }
+      </div>
       }
     </div>
 
@@ -43,20 +37,14 @@
       <label for="email" class="form-label">Email Address</label>
       <div class="input-wrapper">
         <i class="fas fa-envelope input-icon"></i>
-        <input
-          type="email"
-          id="email"
-          formControlName="email"
-          placeholder="name@example.com"
-          class="form-control auth-input"
-          [class.is-invalid]="submitted() && f['email'].errors"
-        />
+        <input type="email" id="email" formControlName="email" placeholder="name@example.com"
+          class="form-control auth-input" [class.is-invalid]="submitted() && f['email'].errors" />
       </div>
       @if (submitted() && f['email'].errors) {
-        <div class="invalid-feedback d-block mt-1">
-          @if (f['email'].errors['required']) { Email is required }
-          @if (f['email'].errors['email']) { Enter a valid email address }
-        </div>
+      <div class="invalid-feedback d-block mt-1">
+        @if (f['email'].errors['required']) { Email is required }
+        @if (f['email'].errors['email']) { Enter a valid email address }
+      </div>
       }
     </div>
 
@@ -65,40 +53,73 @@
       <label for="password" class="form-label">Password</label>
       <div class="input-wrapper">
         <i class="fas fa-lock input-icon"></i>
-        <input
-          [type]="showPassword() ? 'text' : 'password'"
-          id="password"
-          formControlName="password"
-          placeholder="••••••••"
-          class="form-control auth-input"
-          [class.is-invalid]="submitted() && f['password'].errors"
-        />
-        <button type="button" class="btn-toggle-password" (click)="togglePassword()" tabindex="-1" aria-label="Toggle Password Visibility">
+        <input [type]="showPassword() ? 'text' : 'password'" id="password" formControlName="password"
+          placeholder="••••••••" class="form-control auth-input"
+          [class.is-invalid]="submitted() && f['password'].errors" />
+        <button type="button" class="btn-toggle-password" (click)="togglePassword()" tabindex="-1"
+          aria-label="Toggle Password Visibility">
           <i class="fa-solid" [class.fa-eye]="!showPassword()" [class.fa-eye-slash]="showPassword()"></i>
         </button>
       </div>
       @if (submitted() && f['password'].errors) {
-        <div class="invalid-feedback d-block mt-1">
-          @if (f['password'].errors['required']) { Password is required }
-          @if (f['password'].errors['minlength']) { Password must be at least 6 characters }
+      <div class="invalid-feedback d-block mt-1">
+        @if (f['password'].errors['required']) { Password is required }
+        @if (f['password'].errors['minlength']) { Password must be at least 6 characters }
+      </div>
+      }
+    </div>
+
+    <!-- Country Dropdown -->
+    <div class="form-group mb-3">
+      <label for="countryId" class="form-label">Country</label>
+      <div class="input-wrapper custom-dropdown-wrapper">
+        <i class="fas fa-globe input-icon"></i>
+        
+        <div class="form-control auth-input select-input d-flex align-items-center justify-content-between"
+          [class.is-invalid]="submitted() && f['countryId'].errors"
+          (click)="toggleDropdown()">
+          
+          <div class="d-flex align-items-center gap-2">
+            @if (selectedCountry) {
+              <img [src]="'https://flagcdn.com/24x18/' + selectedCountry.country_code?.toLocaleLowerCase() + '.png'"
+                [alt]="selectedCountry.country_name" class="flag-icon" />
+              <span>{{ selectedCountry.country_name }}</span>
+            } @else {
+              <span class="placeholder-text">Select country</span>
+            }
+          </div>
+          <i class="fa-solid fa-chevron-down dropdown-chevron" [class.rotated]="dropdownOpen()"></i>
         </div>
+
+        @if (dropdownOpen()) {
+          <div class="dropdown-options-list">
+            @for (country of countries(); track country.country_id) {
+              <div class="dropdown-option-item d-flex align-items-center gap-2"
+                (click)="selectCountry(country)">
+                <img [src]="'https://flagcdn.com/24x18/' + country.country_code?.toLocaleLowerCase() + '.png'"
+                  [alt]="country.country_name" class="flag-icon" />
+                <span>{{ country.country_name }}</span>
+              </div>
+            }
+          </div>
+        }
+      </div>
+      @if (submitted() && f['countryId'].errors) {
+      <div class="invalid-feedback d-block mt-1">
+        @if (f['countryId'].errors['required']) { Country is required }
+      </div>
       }
     </div>
 
     <!-- Terms Checkbox -->
     <div class="form-group mb-4 form-check">
-      <input
-        type="checkbox"
-        id="agreeTerms"
-        formControlName="agreeTerms"
-        class="form-check-input"
-        [class.is-invalid]="submitted() && f['agreeTerms'].errors"
-      />
+      <input type="checkbox" id="agreeTerms" formControlName="agreeTerms" class="form-check-input"
+        [class.is-invalid]="submitted() && f['agreeTerms'].errors" />
       <label class="form-check-label" for="agreeTerms">
         I agree to the Terms of Service & Privacy Policy
       </label>
       @if (submitted() && f['agreeTerms'].errors) {
-        <div class="invalid-feedback d-block mt-1">You must agree to the terms to proceed</div>
+      <div class="invalid-feedback d-block mt-1">You must agree to the terms to proceed</div>
       }
     </div>
 

@@ -21,4 +21,7 @@ export const API = {
     categories_api: {
         get_categories: '/categories/get_categories'
     },
+    country_api: {
+        get_country_ddl: '/country/get_country_ddl'
+    }
 }
