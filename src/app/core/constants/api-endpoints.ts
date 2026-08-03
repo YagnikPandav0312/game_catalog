@@ -10,7 +10,8 @@ export const API = {
     },
     recent_games: {
         save_history: '/recent-game/save_history',
-        get_recent_games: '/recent-game/recent_games'
+        get_recent_games: '/recent-game/recent_games',
+        get_recommendations: '/recent-game/recommendations'
     },
     games_api: {
         get_games: '/games/get_games'

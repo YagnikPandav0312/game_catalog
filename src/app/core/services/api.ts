@@ -25,6 +25,10 @@ export class Api {
     return this.http.post<any>(`${this.baseUrl}${API.recent_games.get_recent_games}`, data);
   }
 
+  getRecommendations(data: any): Observable<any> {
+    return this.http.post<any>(`${this.baseUrl}${API.recent_games.get_recommendations}`, data);
+  }
+
   getGames(): Observable<any> {
     return this.http.get<any>(`${this.baseUrl}${API.games_api.get_games}`);
   }

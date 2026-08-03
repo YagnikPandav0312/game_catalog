@@ -69,6 +69,34 @@
   </div>
   }
 
+  @if (authService.isLoggedIn() && commonService.popularGames().length > 0) {
+  <div class="games-section mb-4">
+    <div class="section-header">
+      <h2><i class="fas fa-fire text-danger"></i> Popular Games</h2>
+      <a href="#" class="view-all">View All</a>
+    </div>
+    <div class="originals-grid">
+      @for (game of commonService.popularGames(); track game.gid) {
+      <app-game-card [game]="game" [type]="'casino'"></app-game-card>
+      }
+    </div>
+  </div>
+  }
+
+  @if (authService.isLoggedIn() && commonService.countryRecommended().length > 0) {
+  <div class="games-section mb-4">
+    <div class="section-header">
+      <h2><i class="fas fa-thumbs-up text-info"></i> Recommended In Your Country</h2>
+      <a href="#" class="view-all">View All</a>
+    </div>
+    <div class="originals-grid">
+      @for (game of commonService.countryRecommended(); track game.gid) {
+      <app-game-card [game]="game" [type]="'casino'"></app-game-card>
+      }
+    </div>
+  </div>
+  }
+
   <div class="search-section">
     <div class="search-input-wrapper">
       <i class="fas fa-search search-icon"></i>
