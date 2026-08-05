@@ -6,6 +6,7 @@ import { Register } from '../../authentication/register/register';
 import { AuthService } from '../../core/services/auth';
 import { ToastrService } from 'ngx-toastr';
 import { Confirm } from '../../shared/components/confirm/confirm';
+import { socket } from '../../core/services/socket';
 
 @Component({
   selector: 'app-header',
@@ -21,6 +22,7 @@ export class Header {
   private toastr = inject(ToastrService);
   public modelService = inject(NgbModal);
   public router = inject(Router);
+  public readonly socketService = inject(socket);
 
   onToggleSidebar() {
     this.toggleSidebar.emit();
@@ -55,11 +57,14 @@ export class Header {
         this.authService.logout().subscribe({
           next: (data) => {
             localStorage.clear();
+            this.socketService.disconnect();
             this.router.navigate(['']);
             this.toastr.success(data.status.message);
           },
           error: (err) => {
             localStorage.clear();
+            this.socketService.disconnect();
+            this.router.navigate(['']);
             this.toastr.error(err.status.message);
           }
         });

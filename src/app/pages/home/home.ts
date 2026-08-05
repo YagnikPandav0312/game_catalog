@@ -23,8 +23,6 @@ export class Home {
     this.commonService.getSport();
   }
 
-
-
   loadMoreSport() {
     this.showLimitSport.update(limit => limit + 8);
   }

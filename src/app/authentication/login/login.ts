@@ -7,6 +7,7 @@ import { ToastrService } from 'ngx-toastr';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Register } from '../register/register';
 import { Common } from '../../core/services/common';
+import { socket } from '../../core/services/socket';
 
 @Component({
   selector: 'app-login',
@@ -21,6 +22,7 @@ export class Login {
   private readonly commonService = inject(Common);
   private readonly modalService = inject(NgbModal);
   public readonly showPassword = signal<boolean>(false);
+  public readonly socketService = inject(socket);
   public router = inject(Router);
   readonly loginForm: FormGroup = this.fb.group({
     email: ['', [Validators.required, Validators.email]],
@@ -43,7 +45,8 @@ export class Login {
           this.toastService.success(response.status.message);
           this.modalService.dismissAll();
           this.router.navigate(['/casino']);
-          // this.commonService.RecentGames();
+          this.socketService.connect();
+          this.commonService.getRecommendations();
         } else {
           this.toastService.error(response?.status?.message || 'Invalid Credentials');
         }

@@ -10,6 +10,7 @@ export interface User {
   username: string;
   email: string;
   walletBalance: number;
+  country_id: number;
 }
 
 @Injectable({
@@ -17,7 +18,7 @@ export interface User {
 })
 
 export class AuthService {
-  
+
   private readonly http = inject(HttpClient);
   private readonly baseUrl = environment.apiUrl;
   private readonly currentUserSignal = signal<User | null>(null);
@@ -46,6 +47,7 @@ export class AuthService {
             id: player.player_id,
             username: player.full_name,
             email: player.email,
+            country_id: player.country_id,
             walletBalance: 25000.00 // Simulated wallet balance
           };
           localStorage.setItem('token', token);

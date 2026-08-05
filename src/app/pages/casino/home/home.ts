@@ -1,9 +1,9 @@
-import { Component, computed, effect, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Common } from '../../../core/services/common';
-import { ActivatedRoute, Router, RouterModule } from '@angular/router';
+import { Component, computed, effect, inject, signal } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../../../core/services/auth';
-import { Login } from '../../../authentication/login/login';
+import { Common } from '../../../core/services/common';
+import { socket } from '../../../core/services/socket';
 import { GameCard } from '../../../shared/components/game-card/game-card';
 
 @Component({
@@ -21,6 +21,7 @@ export class CasinoHome {
   public showLimitGames = signal<number>(8);
   public selectedCategory = signal<number | null>(null);
   public route = inject(ActivatedRoute);
+  public socketService = inject(socket);
   public router = inject(Router);
   public slg = signal<string | null>(null);
 
@@ -85,6 +86,16 @@ export class CasinoHome {
         this.selectedCategory.set(null);
       }
     });
+  }
+
+  ngOnInit() {
+    // this.socketService.connect();
+    // this.socketService.socket.on(
+    //   'tracking_update',
+    //   (data) => {
+    //     console.log('tracking_update', data);
+    //   }
+    // );
   }
 
   // Load more publishers

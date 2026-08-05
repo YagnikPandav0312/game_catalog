@@ -29,7 +29,7 @@ export class Common {
       if (this.authService.isLoggedIn()) {
         const allGames = this.games();
         if (allGames && allGames.length > 0) {
-          this.RecentGames();
+          // this.RecentGames();
           this.getRecommendations();
         }
       } else {
@@ -135,27 +135,27 @@ export class Common {
     })
   }
 
-  RecentGames() {
-    const user = this.authService.currentUser();
-    const player = {
-      player_id: user?.id
-    }
-    this.showSpinner();
-    this.apiService.getRecentGames(player).subscribe({
-      next: (res: any) => {
-        if (res && res.status.code === 0 && Array.isArray(res.data)) {
-          const resolved = res.data.map((item: any) => {
-            return this.games().find((g: any) => g.gid === item.gid);
-          }).filter((g: any) => g !== undefined);
-          this.recentGames.set(resolved);
-        }
-        this.hideSpinner();
-      }, error: (err: any) => {
-        this.hideSpinner();
-        this.manageStatus(err.error.status);
-      }
-    })
-  }
+  // RecentGames() {
+  //   const user = this.authService.currentUser();
+  //   const player = {
+  //     player_id: user?.id
+  //   }
+  //   this.showSpinner();
+  //   this.apiService.getRecentGames(player).subscribe({
+  //     next: (res: any) => {
+  //       if (res && res.status.code === 0 && Array.isArray(res.data)) {
+  //         const resolved = res.data.map((item: any) => {
+  //           return this.games().find((g: any) => g.gid === item.gid);
+  //         }).filter((g: any) => g !== undefined);
+  //         this.recentGames.set(resolved);
+  //       }
+  //       this.hideSpinner();
+  //     }, error: (err: any) => {
+  //       this.hideSpinner();
+  //       this.manageStatus(err.error.status);
+  //     }
+  //   })
+  // }
 
   getRecommendations() {
     const user = this.authService.currentUser();
@@ -167,7 +167,20 @@ export class Common {
       next: (res: any) => {
         if (res && res.status.code === 0 && res.data) {
           const data = res.data;
-          
+          if (Array.isArray(data.recent_games)) {
+            const resolvedRecentGames = data.recent_games.map((item: any) => {
+              const found = this.games().find((g: any) => g.gid === item.game_id);
+              if (found) return found;
+              return {
+                gid: item.game_id,
+                gn: item.name,
+                img: item.thumbnail,
+                slug: item.slug,
+                provider_id: item.provider_id
+              };
+            }).filter((g: any) => g !== undefined);
+            this.recentGames.set(resolvedRecentGames);
+          }
           if (Array.isArray(data.popular_games)) {
             const resolvedPopular = data.popular_games.map((item: any) => {
               const found = this.games().find((g: any) => g.gid === item.game_id);
@@ -182,9 +195,8 @@ export class Common {
             }).filter((g: any) => g !== undefined);
             this.popularGames.set(resolvedPopular);
           }
-
-          if (Array.isArray(data.country_recommended)) {
-            const resolvedCountry = data.country_recommended.map((item: any) => {
+          if (Array.isArray(data.country_games)) {
+            const resolvedCountry = data.country_games.map((item: any) => {
               const found = this.games().find((g: any) => g.gid === item.game_id);
               if (found) return found;
               return {
