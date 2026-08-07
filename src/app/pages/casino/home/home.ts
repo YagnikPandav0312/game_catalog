@@ -5,10 +5,11 @@ import { AuthService } from '../../../core/services/auth';
 import { Common } from '../../../core/services/common';
 import { socket } from '../../../core/services/socket';
 import { GameCard } from '../../../shared/components/game-card/game-card';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-casino-home',
-  imports: [CommonModule, GameCard],
+  imports: [CommonModule, GameCard, FormsModule],
   templateUrl: './home.html',
   styleUrl: './home.scss',
 })
@@ -24,7 +25,7 @@ export class CasinoHome {
   public socketService = inject(socket);
   public router = inject(Router);
   public slg = signal<string | null>(null);
-
+  public name = signal('');
   // Computed signal to reactively filter games whenever slg, categories, or games change
   public filteredGames = computed(() => {
     const currentSlug = this.slg();
@@ -89,13 +90,25 @@ export class CasinoHome {
   }
 
   ngOnInit() {
-    // this.socketService.connect();
-    // this.socketService.socket.on(
-    //   'tracking_update',
-    //   (data) => {
-    //     console.log('tracking_update', data);
-    //   }
-    // );
+    this.socketService.connect();
+    this.socketService.socket.on(
+      'tracking_update',
+      (data) => {
+        console.log('tracking_update', data);
+      }
+    );
+    this.socketService.socket.on(
+      'activity_tracked',
+      (data) => {
+        console.log('activity_tracked', data);
+      }
+    );
+    this.socketService.socket.on(
+      'activity_error',
+      (error) => {
+        console.error('activity_error', error);
+      }
+    );
   }
 
   // Load more publishers
@@ -160,5 +173,17 @@ export class CasinoHome {
     if (lower.includes('roulette') || lower.includes('dice')) return 'fas fa-dice text-info';
     return 'fas fa-gamepad text-success';
   }
+
+  // sendData() {
+  //   this.socketService.connect();
+  //   this.socketService.socket.emit('set_name', this.name());
+  //   this.socketService.socket.on(
+  //     'set_name',
+  //     (data) => {
+  //       console.log('set_name', data);
+  //     }
+  //   );
+  // }
 }
+
 

@@ -37,6 +37,14 @@
     </div>
   </div>
 
+  <!-- <div class="search-section">
+    <div class="search-input-wrapper">
+      <i class="fas fa-search search-icon"></i>
+      <input type="text" placeholder="Search Stake.com" class="search-input" [(ngModel)]="name" />
+      <button type="button" class="btn btn-info" (click)="sendData()">Set Name</button>
+    </div>
+  </div> -->
+
   <div class="search-section">
     <div class="search-input-wrapper">
       <i class="fas fa-search search-icon"></i>
@@ -90,8 +98,7 @@
       <i class="fas fa-grip text-primary"></i> All Games
     </button>
     @for (item of commonService.categories(); track item.cid) {
-    <button class="subnav-btn" [class.active]="selectedCategory() === item.cid"
-      (click)="selectCategory(item)">
+    <button class="subnav-btn" [class.active]="selectedCategory() === item.cid" (click)="selectCategory(item)">
       <i [class]="getCategoryIcon(item.slg)"></i> {{item.cn}}
     </button>
     }

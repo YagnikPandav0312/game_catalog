@@ -5,6 +5,7 @@ import { Api } from '../../../core/services/api';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Login } from '../../../authentication/login/login';
 import { ToastrService } from 'ngx-toastr';
+import { socket } from '../../../core/services/socket';
 
 @Component({
   selector: 'app-game-card',
@@ -22,6 +23,7 @@ export class GameCard {
   public authService = inject(AuthService);
   private modalService = inject(NgbModal);
   private toastr = inject(ToastrService);
+  public socketService = inject(socket);
 
   getGameThumbnail(): string {
     if (this.type === 'casino') {
@@ -62,6 +64,14 @@ export class GameCard {
           this.commonService.hideSpinner();
         }
       });
+      // Track player activity using Socket
+      if (user?.id && this.game?.gid && user?.country_id) {
+        this.socketService.trackActivity(
+          Number(user.id),
+          Number(this.game.gid),
+          Number(user.country_id)
+        );
+      }
     }
   }
 }
