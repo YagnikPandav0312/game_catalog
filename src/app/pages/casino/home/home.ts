@@ -92,21 +92,21 @@ export class CasinoHome {
   ngOnInit() {
     this.socketService.connect();
     this.socketService.socket.on(
-      'tracking_update',
+      'player_tracking_response',
       (data) => {
-        console.log('tracking_update', data);
+        console.log('player_tracking_response', data);
       }
     );
     this.socketService.socket.on(
-      'activity_tracked',
+      'player_recommendation',
       (data) => {
-        console.log('activity_tracked', data);
+        console.log('player_recommendation', data);
       }
     );
     this.socketService.socket.on(
-      'activity_error',
+      'player_tracking_error',
       (error) => {
-        console.error('activity_error', error);
+        console.error('player_tracking__error', error);
       }
     );
   }
@@ -174,16 +174,6 @@ export class CasinoHome {
     return 'fas fa-gamepad text-success';
   }
 
-  // sendData() {
-  //   this.socketService.connect();
-  //   this.socketService.socket.emit('set_name', this.name());
-  //   this.socketService.socket.on(
-  //     'set_name',
-  //     (data) => {
-  //       console.log('set_name', data);
-  //     }
-  //   );
-  // }
 }
 
 
