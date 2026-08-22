@@ -157,6 +157,55 @@ export class Common {
   //   })
   // }
 
+  updateRecommendationsState(data: any) {
+    if (!data) return;
+
+    if (Array.isArray(data.recent_games)) {
+      const resolvedRecentGames = data.recent_games.map((item: any) => {
+        const found = this.games().find((g: any) => g.gid === item.game_id);
+        if (found) return found;
+        return {
+          gid: item.game_id,
+          gn: item.name,
+          img: item.thumbnail,
+          slug: item.slug,
+          provider_id: item.provider_id
+        };
+      }).filter((g: any) => g !== undefined);
+      this.recentGames.set(resolvedRecentGames);
+    }
+
+    if (Array.isArray(data.popular_games)) {
+      const resolvedPopular = data.popular_games.map((item: any) => {
+        const found = this.games().find((g: any) => g.gid === item.game_id);
+        if (found) return found;
+        return {
+          gid: item.game_id,
+          gn: item.name,
+          img: item.thumbnail,
+          slug: item.slug,
+          provider_id: item.provider_id
+        };
+      }).filter((g: any) => g !== undefined);
+      this.popularGames.set(resolvedPopular);
+    }
+
+    if (Array.isArray(data.country_games)) {
+      const resolvedCountry = data.country_games.map((item: any) => {
+        const found = this.games().find((g: any) => g.gid === item.game_id);
+        if (found) return found;
+        return {
+          gid: item.game_id,
+          gn: item.name,
+          img: item.thumbnail,
+          slug: item.slug,
+          provider_id: item.provider_id
+        };
+      }).filter((g: any) => g !== undefined);
+      this.countryRecommended.set(resolvedCountry);
+    }
+  }
+
   getRecommendations() {
     const user = this.authService.currentUser();
     const player = {
@@ -166,49 +215,7 @@ export class Common {
     this.apiService.getRecommendations(player).subscribe({
       next: (res: any) => {
         if (res && res.status.code === 0 && res.data) {
-          const data = res.data;
-          if (Array.isArray(data.recent_games)) {
-            const resolvedRecentGames = data.recent_games.map((item: any) => {
-              const found = this.games().find((g: any) => g.gid === item.game_id);
-              if (found) return found;
-              return {
-                gid: item.game_id,
-                gn: item.name,
-                img: item.thumbnail,
-                slug: item.slug,
-                provider_id: item.provider_id
-              };
-            }).filter((g: any) => g !== undefined);
-            this.recentGames.set(resolvedRecentGames);
-          }
-          if (Array.isArray(data.popular_games)) {
-            const resolvedPopular = data.popular_games.map((item: any) => {
-              const found = this.games().find((g: any) => g.gid === item.game_id);
-              if (found) return found;
-              return {
-                gid: item.game_id,
-                gn: item.name,
-                img: item.thumbnail,
-                slug: item.slug,
-                provider_id: item.provider_id
-              };
-            }).filter((g: any) => g !== undefined);
-            this.popularGames.set(resolvedPopular);
-          }
-          if (Array.isArray(data.country_games)) {
-            const resolvedCountry = data.country_games.map((item: any) => {
-              const found = this.games().find((g: any) => g.gid === item.game_id);
-              if (found) return found;
-              return {
-                gid: item.game_id,
-                gn: item.name,
-                img: item.thumbnail,
-                slug: item.slug,
-                provider_id: item.provider_id
-              };
-            }).filter((g: any) => g !== undefined);
-            this.countryRecommended.set(resolvedCountry);
-          }
+          this.updateRecommendationsState(res.data);
         }
         this.hideSpinner();
       }, error: (err: any) => {

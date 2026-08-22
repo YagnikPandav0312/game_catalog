@@ -91,24 +91,6 @@ export class CasinoHome {
 
   ngOnInit() {
     this.socketService.connect();
-    this.socketService.socket.on(
-      'player_tracking_response',
-      (data) => {
-        console.log('player_tracking_response', data);
-      }
-    );
-    this.socketService.socket.on(
-      'player_recommendation',
-      (data) => {
-        console.log('player_recommendation', data);
-      }
-    );
-    this.socketService.socket.on(
-      'player_tracking_error',
-      (error) => {
-        console.error('player_tracking__error', error);
-      }
-    );
   }
 
   // Load more publishers

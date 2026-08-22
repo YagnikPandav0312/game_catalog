@@ -57,7 +57,6 @@ export class GameCard {
       this.apiService.saveHistory(player).subscribe({
         next: (res: any) => {
           // this.commonService.RecentGames();
-          this.commonService.getRecommendations();
           this.commonService.hideSpinner();
         }, error: (err: any) => {
           this.commonService.manageStatus(err.error.status);
